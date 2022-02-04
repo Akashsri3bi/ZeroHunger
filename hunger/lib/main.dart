@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hunger/config/theme.dart';
 import 'package:hunger/screens/home.dart';
 
 void main() {
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'APP_NAME',
-      theme: ThemeData(primarySwatch: Colors.green),
+      title: 'Hunger',
+      theme: theme(),
       debugShowCheckedModeBanner: false,
       home: Home(),
     );
