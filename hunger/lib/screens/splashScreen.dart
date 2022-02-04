@@ -13,11 +13,11 @@ class _SplashState extends State<Splash> {
   @override
   void initState(){
     super.initState();
-    NavigateToHome();
+    navigateToHome();
   }
 
-  NavigateToHome() async{
-    await Future.delayed(const Duration(milliseconds: 1500), () {} );
+  navigateToHome() async{
+    await Future.delayed(const Duration(seconds: 2), () {} );
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Home()));
   }
 
@@ -27,15 +27,33 @@ class _SplashState extends State<Splash> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [ // logo can be put here instead of text
-            Text(
-              'Splash screen',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          children:  [
+            const Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB( 55,220,55,0 ),
+                child: Text(
+                  'End Hunger',
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                ),
+              )
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB( 0,0,0,220 ),
+                child: Container(
+                  decoration: const  BoxDecoration(
+                    image: DecorationImage(
+                      image:  AssetImage(
+                        'assets/logo.png'
+                      )
+                    )
+                  ),
+                ),
+              )
             )
-          ],
-        ),
+          ]
+        )
       )
     );
   }
-
 }
