@@ -25,25 +25,35 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Expanded(
-          child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(55, 220, 55, 0),
-        child: Text(
-          'End Hunger',
-          style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-        ),
-      )),
-      Expanded(
-          child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 220),
-        child: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/logo.png'))),
-        ),
-      ))
-    ])));
+      body: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: Color(0xffffffcc),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 125, 0, 50),
+            child: Text(
+              'End Hunger',
+              style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xffffffcc),
+                    image: DecorationImage(
+                        image: AssetImage('assets/logo.png')
+                    ),
+                ),
+              ),
+            ),
+          ),
+        ]
+      )
+    );
   }
 }
