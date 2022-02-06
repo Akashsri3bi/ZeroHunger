@@ -26,7 +26,7 @@ class Inform extends StatelessWidget {
               'Restaurants',
               style: TextStyle(
                   fontSize: 28,
-                  fontFamily: 'futura',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
@@ -50,7 +50,7 @@ class Inform extends StatelessWidget {
               'Ordered Online ?',
               style: TextStyle(
                   fontSize: 28,
-                  fontFamily: 'futura',
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
