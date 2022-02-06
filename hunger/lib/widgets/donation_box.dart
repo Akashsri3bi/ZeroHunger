@@ -27,7 +27,7 @@ class DonationBox extends StatelessWidget {
                 child: Text(
                   'Choose Amount',
                   style: TextStyle(
-                      fontFamily: 'Nunito',
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.bold,
                       fontSize: 24),
                 ),

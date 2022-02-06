@@ -4,7 +4,7 @@ ThemeData theme() {
   return ThemeData(
     primaryColor: const Color(0xFFAAFF00),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
-    backgroundColor: Color(0xFF356859),
+    backgroundColor: const Color(0xFF356859),
     fontFamily: 'cursive',
     textTheme: const TextTheme(
       headline1: TextStyle(
