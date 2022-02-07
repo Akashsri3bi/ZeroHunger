@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hunger/screens/home.dart';
+import 'package:hunger/screens/login.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _SplashState extends State<Splash> {
   navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Home()));
+        context, MaterialPageRoute(builder: (context) => Login()));
   }
 
   @override
@@ -42,11 +43,12 @@ class _SplashState extends State<Splash> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                 child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xffffffcc),
-                    image: DecorationImage(
+                  decoration: BoxDecoration(
+                    color: const Color(0xffffffcc),
+                    image: const DecorationImage(
                         image: AssetImage('assets/logo.png')
                     ),
+                    borderRadius: BorderRadius.circular(80),
                   ),
                 ),
               ),
