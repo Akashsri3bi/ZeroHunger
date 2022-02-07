@@ -16,57 +16,59 @@ class Inform extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Restaurants',
-              style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: ListView.builder(
-                  itemCount: 6,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return RestaurantCard();
-                  }),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Ordered Online ?',
-              style: TextStyle(
-                  fontSize: 28,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-                height: 185,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Restaurants',
+                style: TextStyle(
+                    fontSize: 28,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 300,
                 width: double.infinity,
                 child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: 6,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return OnlineFoodCard();
-                    }))
-          ],
+                      return RestaurantCard();
+                    }),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Ordered Online ?',
+                style: TextStyle(
+                    fontSize: 28,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 185,
+                  width: double.infinity,
+                  child: ListView.builder(
+                      itemCount: 3,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return OnlineFoodCard();
+                      }))
+            ],
+          ),
         ),
       ),
     );
