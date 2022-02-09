@@ -1,11 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/models/price.dart';
 
-class DonationBox extends StatelessWidget {
+class DonationBox extends StatefulWidget {
   const DonationBox({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<DonationBox> createState() => _DonationBoxState();
+}
+
+class _DonationBoxState extends State<DonationBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,10 +43,12 @@ class DonationBox extends StatelessWidget {
               ),
               Expanded(
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: Price.prices.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return CustomPrices();
+                      return CustomPrices(
+                        price: Price.prices[index],
+                      );
                     }),
               ),
               const SizedBox(
@@ -51,7 +59,29 @@ class DonationBox extends StatelessWidget {
                     primary: Colors.black.withOpacity(0.9),
                     padding: const EdgeInsets.symmetric(horizontal: 50),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    int sum = 0;
+                    Price.prices.forEach((price) {
+                      if (price.selected) {
+                        price.selected = false;
+                        sum += price.value;
+                      }
+                    });
+                    sum == 0
+                        ? ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                            content: Text('Choose amount'),
+                            behavior: SnackBarBehavior.floating,
+                          ))
+                        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                Text('\$${sum} Donated to Farmers Foundation'),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                    setState(() {
+                      //Simple change of state
+                    });
+                  },
                   child: const Text(
                     'Donate',
                     style: TextStyle(
@@ -74,21 +104,34 @@ class DonationBox extends StatelessWidget {
   }
 }
 
-class CustomPrices extends StatelessWidget {
+class CustomPrices extends StatefulWidget {
+  final Price price;
+
+  const CustomPrices({Key? key, required this.price}) : super(key: key);
+
+  @override
+  State<CustomPrices> createState() => _CustomPricesState();
+}
+
+class _CustomPricesState extends State<CustomPrices> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        setState(() {
+          widget.price.selected = !widget.price.selected;
+        });
+      },
       child: Container(
         height: 50,
         width: 60,
         margin: const EdgeInsets.only(left: 5, right: 5),
         padding: const EdgeInsets.only(left: 10, top: 20),
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: widget.price.selected ? Colors.pink[300] : Colors.grey[300],
           borderRadius: BorderRadius.circular(5),
         ),
-        child: Text('\$${3}',
+        child: Text('\$${widget.price.value}',
             style: Theme.of(context)
                 .textTheme
                 .headline2!
