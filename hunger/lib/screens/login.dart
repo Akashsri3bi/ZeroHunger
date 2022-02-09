@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Login();
-  }
-}
+import 'package:hunger/screens/signup.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -20,7 +14,7 @@ class _LoginState extends State<Login> {
         child: Column(
           children: [
             Container(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 80),
                 child: const Center(
                   child: Text("Welcome",
                       style: TextStyle(
@@ -29,7 +23,10 @@ class _LoginState extends State<Login> {
                       )),
                 )),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20
+              ),
               child: Stack(
                 children: [
                   Container(
@@ -48,7 +45,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: const <Widget>[
                   TextField(
-                    style: TextStyle(fontSize: 22, fontFamily: 'helvetica'),
+                    style: TextStyle(fontSize: 21, fontFamily: 'helvetica'),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -73,7 +70,7 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: const <Widget>[
                   TextField(
-                    style: TextStyle(fontSize: 22, fontFamily: 'helvetica'),
+                    style: TextStyle(fontSize: 21, fontFamily: 'helvetica'),
                     decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(
@@ -92,8 +89,6 @@ class _LoginState extends State<Login> {
                 ],
               ),
             ),
-
-            //const SizedBox(height: 5.0),
             Container(
               alignment: const Alignment(1.0, 0.0),
               padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 25, 13),
@@ -165,8 +160,8 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 45),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                Text(
+              children: <Widget>[
+                const Text(
                   'New here ?',
                   style: TextStyle(
                     fontFamily: 'Helvetica',
@@ -174,20 +169,26 @@ class _LoginState extends State<Login> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 InkWell(
-                    child: Text(
-                  'Signup',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontFamily: 'helvetica',
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                    fontSize: 17,
-                  ),
-                )),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Signup()));
+                    },
+                    child: const Text(
+                      'Signup',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontFamily: 'helvetica',
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                        fontSize: 17,
+                      ),
+                    )),
               ],
-            )
+            ),
           ],
         ),
       ),
