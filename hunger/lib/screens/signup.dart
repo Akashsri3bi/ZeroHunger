@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/screens/login.dart';
+import 'package:hunger/service/auth.dart';
+import 'package:hunger/screens/home.dart';
+
 
 class Signup extends StatefulWidget {
   @override
@@ -8,6 +11,13 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController surnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,14 +55,15 @@ class _SignupState extends State<Signup> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
-                          child: const SizedBox(
+                          child: SizedBox(
                             width: 157,
                             child: TextField(
-                              style: TextStyle(
+                              controller: nameController,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontFamily: 'helvetica'
                               ),
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Name',
                               labelStyle: TextStyle(
                                   fontFamily: 'Montserrat',
@@ -70,14 +81,15 @@ class _SignupState extends State<Signup> {
 
                         Container(
                           //padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                          child: const SizedBox(
+                          child: SizedBox(
                             width: 168,
                             child: TextField(
-                              style: TextStyle(
+                              controller: surnameController,
+                              style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'helvetica'
                               ),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Surname',
                                 labelStyle: TextStyle(
                                     fontFamily: 'Montserrat',
@@ -99,14 +111,15 @@ class _SignupState extends State<Signup> {
                   Container(
                     padding: const EdgeInsetsDirectional.fromSTEB(45, 10, 45, 15),
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         TextField(
-                          style: TextStyle(
+                          controller: emailController,
+                          style: const TextStyle(
                               fontSize: 20,
                               fontFamily: 'helvetica'
                           ),
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Email',
                             labelStyle: TextStyle(
                                 fontFamily: 'Montserrat',
@@ -126,10 +139,11 @@ class _SignupState extends State<Signup> {
                   Container(
                     padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 45, 80),
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         TextField(
-                          style: TextStyle(fontSize: 21, fontFamily: 'helvetica'),
-                          decoration: InputDecoration(
+                          controller: passwordController,
+                          style: const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
+                          decoration: const InputDecoration(
                             labelText: 'Password',
                             labelStyle: TextStyle(
                                 fontFamily: 'Montserrat',
@@ -156,7 +170,19 @@ class _SignupState extends State<Signup> {
                       color: Colors.green[600],
                       elevation: 5,
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          authService
+                              .register(
+                              nameController.text,
+                              surnameController.text,
+                              emailController.text,
+                              passwordController.text).then((value) {
+                            return Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+                          });
+                        },
                         child: const Center(
                           child: Text(
                             'SIGN UP',
@@ -187,10 +213,7 @@ class _SignupState extends State<Signup> {
                       const SizedBox(width: 8),
                       InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Login()));
+                            Navigator.pop(context);
                           },
                           child: const Text(
                             'Login',

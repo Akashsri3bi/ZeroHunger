@@ -8,6 +8,8 @@ import 'package:hunger/screens/inform.dart';
 import 'package:hunger/screens/user.dart';
 import 'package:hunger/widgets/donation_box.dart';
 import 'package:hunger/widgets/employment_search_box.dart';
+import 'package:hunger/service/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  AuthService authService = AuthService();
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
     const Donate(),
@@ -216,7 +219,7 @@ class CustomAppBar extends StatelessWidget with ObstructingPreferredSizeWidget {
         title: Row(children: [
           Expanded(
             child: Text(
-              'Hi, AKASH',
+              'Hi, $userName',
               style: Theme.of(context)
                   .textTheme
                   .headline1!

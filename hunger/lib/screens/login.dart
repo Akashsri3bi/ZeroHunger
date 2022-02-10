@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hunger/screens/home.dart';
 import 'package:hunger/screens/signup.dart';
+import 'package:hunger/service/auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -7,6 +10,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  AuthService authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +51,12 @@ class _LoginState extends State<Login> {
               // for email
               padding: const EdgeInsetsDirectional.fromSTEB(45, 40, 45, 27),
               child: Column(
-                children: const <Widget>[
+                children: <Widget>[
                   TextField(
-                    style: TextStyle(fontSize: 21, fontFamily: 'helvetica'),
+                    controller: emailController,
+                    style: const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -68,10 +77,11 @@ class _LoginState extends State<Login> {
               // for password
               padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 45, 28),
               child: Column(
-                children: const <Widget>[
+                children: <Widget>[
                   TextField(
-                    style: TextStyle(fontSize: 21, fontFamily: 'helvetica'),
-                    decoration: InputDecoration(
+                    controller: passwordController,
+                    style: const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(
                           fontFamily: 'Montserrat',
@@ -114,7 +124,13 @@ class _LoginState extends State<Login> {
                 color: Colors.green[600],
                 elevation: 5,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    await authService.signIn(emailController.text, passwordController.text).then((value)
+                    {
+                      return Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => Home()));
+                    });
+                  },
                   child: const Center(
                     child: Text(
                       'LOGIN',
@@ -142,15 +158,20 @@ class _LoginState extends State<Login> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    SizedBox(width: 10),
-                    Center(
-                      child: Text(
-                        'Login with Google',
-                        style: TextStyle(
-                            fontFamily: 'helvetica',
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                  children: <Widget>[
+                    const SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        GoogleSignIn().signIn();
+                      },
+                      child: const Center(
+                        child: Text(
+                          'Login with Google',
+                          style: TextStyle(
+                              fontFamily: 'helvetica',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ],
