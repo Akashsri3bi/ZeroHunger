@@ -1,16 +1,27 @@
 class Employment {
-  final String jobs;
+  static List<Result> userSearches = [];
+  static List<Result> searchResults = [];
+}
 
-  Employment(this.jobs);
+class Result {
+  final String salary_min;
+  final String place;
+  final String description;
+  final String title;
+  final String company;
+  final String url;
 
-  //Mock data before api consumption
+  Result(this.salary_min, this.place, this.description, this.url, this.title,
+      this.company);
 
-  static List<Employment> searchResults = [];
-  static List<Employment> employments = [
-    Employment('Engineeering'),
-    Employment('Aerospace'),
-    Employment('Doctor'),
-    Employment('Farming'),
-    Employment('RealEstate')
-  ];
+  factory Result.fromJson(dynamic json) {
+    return Result(
+      json['salary_min'].toString(),
+      json['location']['display_name'],
+      json['description'],
+      json['redirect_url'],
+      json['title'],
+      json['company']['display_name'],
+    );
+  }
 }

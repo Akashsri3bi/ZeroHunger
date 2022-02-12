@@ -139,7 +139,7 @@ class Donate extends StatelessWidget {
                               width: 10,
                             ),
                             Icon(
-                              Icons.restaurant,
+                              Icons.location_on,
                               color: Theme.of(context).primaryColor,
                             ),
                             const SizedBox(
@@ -183,7 +183,13 @@ class Donate extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MapPage(),
+                                  ));
+                            },
                             child: Text(
                               'Deliver now',
                               style: Theme.of(context)
@@ -196,9 +202,11 @@ class Donate extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              //Top Restaurants Page .
+                            },
                             child: Text(
-                              'Connect to Restaurants',
+                              'Collecting Restaurants',
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4!

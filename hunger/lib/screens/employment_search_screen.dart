@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/models/employment_details.dart';
 import 'package:hunger/repository/employment_repo.dart';
+import 'package:hunger/widgets/job_details_card.dart';
 
 class EmploymentSearchScreen extends StatefulWidget {
   @override
@@ -63,17 +64,19 @@ class _EmploymentSearchScreenState extends State<EmploymentSearchScreen> {
                 ? ListView.builder(
                     itemCount: Employment.searchResults.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(Employment.searchResults[index].jobs),
-                      );
+                      try {
+                        return JobDetailsCard(
+                            result: Employment.searchResults[index]);
+                      } catch (e) {
+                        return Center(child: CircularProgressIndicator());
+                      }
                     },
                   )
                 : ListView.builder(
-                    itemCount: Employment.employments.length,
+                    itemCount: Employment.userSearches.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(Employment.employments[index].jobs),
-                      );
+                      return JobDetailsCard(
+                          result: Employment.userSearches[index]);
                     },
                   ),
           ),
@@ -89,12 +92,15 @@ class _EmploymentSearchScreenState extends State<EmploymentSearchScreen> {
       return;
     }
 
-    Employment.employments.forEach((job) {
+    /*Employment.employments.forEach((job) {
       if (job.jobs.toLowerCase().contains(text.toLowerCase())) {
         Employment.searchResults.add(job);
       }
-    });
-
+    });*/
+    List<Result> results = await EmploymentRepository.getJobs(text);
+    for (Result result in results) {
+      Employment.searchResults.add(result);
+    }
     setState(() {});
   }
 }
