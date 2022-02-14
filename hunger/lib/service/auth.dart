@@ -11,6 +11,7 @@ class AuthService{
 
   Future<User?> signIn(String email, String password) async{
     var user = await auth.signInWithEmailAndPassword(email: email, password: password);
+    getData();
     return user.user;
   }
   signOut() async{
@@ -27,9 +28,12 @@ class AuthService{
       'Surname': surname,
       'Email': email,
         });
-    userName = name;
-    userSurname = surname;
+    getData();
     return user.user;
   }
-
+  getData() async{
+    var user = auth.currentUser;
+    //userName = firestore.collection('Person').where(FieldPath.documentId, isEqualTo: user?.uid).get().toString();
+    //userSurname = firestore.collection('Person').where(FieldPath.documentId, isEqualTo: user?.uid).get().toString();
+  }
 }
