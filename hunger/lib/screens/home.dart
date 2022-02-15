@@ -8,6 +8,7 @@ import 'package:hunger/screens/collecting_restaurants_screen.dart';
 import 'package:hunger/screens/help.dart';
 import 'package:hunger/screens/inform.dart';
 import 'package:hunger/screens/map_page.dart';
+import 'package:hunger/screens/signup.dart';
 import 'package:hunger/screens/user.dart';
 import 'package:hunger/widgets/donation_box.dart';
 import 'package:hunger/widgets/employment_search_box.dart';
@@ -21,8 +22,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  AuthService authService = AuthService();
-
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
     const Donate(),
@@ -40,7 +39,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).backgroundColor,
-          type: BottomNavigationBarType.shifting,
           onTap: _onItemTapped,
           selectedItemColor: Colors.lightBlue,
           currentIndex: _selectedIndex,
@@ -271,7 +269,6 @@ class CustomAppBar extends StatelessWidget with ObstructingPreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthService authService = AuthService();
     String? name = FirebaseAuth.instance.currentUser!.displayName;
     return AppBar(
         automaticallyImplyLeading: false,
@@ -281,7 +278,7 @@ class CustomAppBar extends StatelessWidget with ObstructingPreferredSizeWidget {
         title: Row(children: [
           Expanded(
             child: Text(
-              'Hi,${name.toString()}',
+              name != null ? 'Hi, ${name.toString()}' : 'Hi, ${Signup.name}',
               style: Theme.of(context)
                   .textTheme
                   .headline1!

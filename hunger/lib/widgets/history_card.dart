@@ -27,7 +27,8 @@ class HistoryCard extends StatelessWidget {
                 width: 50,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/zomato.jpg'),
+                        image: NetworkImage(
+                            'https://logodownload.org/wp-content/uploads/2020/02/zomato-logo-2.png'),
                         fit: BoxFit.fill),
                     shape: BoxShape.circle)),
             const SizedBox(
