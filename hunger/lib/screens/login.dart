@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
 
   AuthService authService = AuthService();
+  bool loadingIsVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +23,34 @@ class _LoginState extends State<Login> {
         child: Column(
           children: [
             Container(
-                padding: const EdgeInsets.only(top: 80),
-                child: const Center(
+              padding: const EdgeInsets.only(top: 80),
+              child: const Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Center(
                   child: Text("Welcome",
                       style: TextStyle(
                         fontSize: 55,
                         fontWeight: FontWeight.bold,
                       )),
-                )),
+                ),
+              ),
+            ),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Stack(
-                children: [
-                  Container(
-                      child: const Text("Login, please",
-                          style: TextStyle(
-                            fontSize: 40,
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ))),
-                ],
+              child: Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(
+                  child: const Text(
+                    "Login, please",
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ),
             Container(
@@ -115,30 +124,45 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 30.0),
             Container(
-              padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 45, 0),
               height: 42,
-              child: Material(
-                borderRadius: BorderRadius.circular(20),
-                shadowColor: Colors.greenAccent,
-                color: Colors.green[600],
-                elevation: 5,
-                child: GestureDetector(
-                  onTap: () async {
-                    await authService
-                        .signIn(emailController.text, passwordController.text)
-                        .then((value) {
-                      return Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    });
-                  },
-                  child: const Center(
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Helvetica'),
+              width: 320,
+              child: Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Material(
+                  borderRadius: BorderRadius.circular(20),
+                  shadowColor: Colors.greenAccent,
+                  color: Colors.green[600],
+                  elevation: 5,
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (emailController.text != '' &&
+                          passwordController.text != '') {
+                        setState(() {
+                          loadingIsVisible = true;
+                        });
+                      }
+
+                      await authService
+                          .signIn(emailController.text, passwordController.text)
+                          .then((value) {
+                        setState(() {
+                          loadingIsVisible = false;
+                        });
+                        return Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      });
+                    },
+                    child: const Expanded(
+                      child: Text(
+                        'LOGIN',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Helvetica'),
+                      ),
                     ),
                   ),
                 ),
@@ -148,33 +172,37 @@ class _LoginState extends State<Login> {
             Container(
               padding: const EdgeInsetsDirectional.fromSTEB(45, 0, 45, 0),
               height: 42,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 1.0,
+              child: Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1.0,
+                    ),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(width: 10),
-                    GestureDetector(
-                      onTap: () {
-                        GoogleSignIn().signIn();
-                      },
-                      child: const Center(
-                        child: Text(
-                          'Login with Google',
-                          style: TextStyle(
-                              fontFamily: 'helvetica',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          GoogleSignIn().signIn();
+                        },
+                        child: const Center(
+                          child: Text(
+                            'Login with Google',
+                            style: TextStyle(
+                                fontFamily: 'helvetica',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -207,6 +235,19 @@ class _LoginState extends State<Login> {
                       ),
                     )),
               ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Visibility(
+                visible: loadingIsVisible,
+                child: const CircularProgressIndicator(
+                  strokeWidth: 7,
+                ),
+              ),
             ),
           ],
         ),
