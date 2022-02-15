@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/models/restaurant_model.dart';
+import 'package:hunger/screens/map_page.dart';
 
 class RestaurantCard extends StatelessWidget {
   //We will use custom Clipper widget to give different shapes and design to our promotion box.
+  final Restaurant restaurant;
+
+  const RestaurantCard({Key? key, required this.restaurant}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -13,9 +18,8 @@ class RestaurantCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
             color: Theme.of(context).primaryColor,
-            image: const DecorationImage(
-                image: AssetImage('assets/restaurant1.jpg'),
-                fit: BoxFit.cover)),
+            image: DecorationImage(
+                image: NetworkImage(restaurant.imageUrl), fit: BoxFit.cover)),
       ),
       ClipPath(
         clipper: PromoCustomClipper(),
@@ -31,10 +35,9 @@ class RestaurantCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10.0, left: 15, right: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              
               children: [
                 Text(
-                  'LA MARTA',
+                  restaurant.name,
                   style: Theme.of(context)
                       .textTheme
                       .headline2!
@@ -44,7 +47,10 @@ class RestaurantCard extends StatelessWidget {
                   height: 25,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MapPage()));
+                  },
                   child: Text(
                     'Deliver Now',
                     style: Theme.of(context)

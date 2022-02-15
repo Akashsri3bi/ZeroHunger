@@ -1,7 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/models/restaurant_model.dart';
 
-class OnlineFoodCard extends StatelessWidget {
+class OnlineFoodCard extends StatefulWidget {
+  final Restaurant restaurant;
+
+  const OnlineFoodCard({Key? key, required this.restaurant}) : super(key: key);
+
+  @override
+  State<OnlineFoodCard> createState() => _OnlineFoodCardState();
+}
+
+class _OnlineFoodCardState extends State<OnlineFoodCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,11 +30,10 @@ class OnlineFoodCard extends StatelessWidget {
           Container(
             width: 50,
             height: 30,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/zomato.jpg'),
-              ),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(widget.restaurant.imageUrl)),
             ),
           ),
           const SizedBox(
@@ -32,7 +41,7 @@ class OnlineFoodCard extends StatelessWidget {
           ),
           Expanded(
               child: Text(
-            'Zomato',
+            widget.restaurant.name,
             style: Theme.of(context)
                 .textTheme
                 .headline2!

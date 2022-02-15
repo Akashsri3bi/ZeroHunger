@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hunger/service/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/screens/login.dart';
 import 'package:hunger/widgets/history_card.dart';
 
-class User extends StatelessWidget {
+class UserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,7 @@ class User extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const UserMain(),
+              UserMain(),
               const SizedBox(
                 height: 10,
               ),
@@ -110,9 +113,12 @@ class RatingBox extends StatelessWidget {
 }
 
 class UserMain extends StatelessWidget {
-  const UserMain({
+  UserMain({
     Key? key,
   }) : super(key: key);
+
+  AuthService authService = AuthService();
+  String? name = FirebaseAuth.instance.currentUser!.displayName;
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +133,18 @@ class UserMain extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Akash',
+                    name.toString(),
                     style: Theme.of(context).textTheme.headline1,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      await authService.signOut();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Login()));
+                    },
                     child: Text(
                       'Log out >',
                       style: Theme.of(context)

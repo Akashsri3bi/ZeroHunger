@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/models/employment_details.dart';
+import 'package:hunger/models/filter.dart';
 import 'package:hunger/repository/employment_repo.dart';
 import 'package:hunger/widgets/job_details_card.dart';
 
@@ -91,13 +92,29 @@ class _EmploymentSearchScreenState extends State<EmploymentSearchScreen> {
       setState(() {});
       return;
     }
-
-    /*Employment.employments.forEach((job) {
-      if (job.jobs.toLowerCase().contains(text.toLowerCase())) {
-        Employment.searchResults.add(job);
+    List<Result> results = [];
+    if (Filter.filtered) {
+      String salary_min = 'any';
+      int i = 0;
+      while (i < 3) {
+        if (Filter.values[i].selected) {
+          salary_min = Filter.values[i].value;
+        }
+        i++;
       }
-    });*/
-    List<Result> results = await EmploymentRepository.getJobs(text);
+      String sort_by = "any";
+      int j = 5;
+      while (j <= 6) {
+        if (Filter.values[i].selected) {
+          sort_by = Filter.values[i].value;
+        }
+        j++;
+      }
+      results = await EmploymentRepository.getFilteredJobs(
+          text, salary_min, sort_by, true, true);
+    } else {
+      results = await EmploymentRepository.getJobs(text);
+    }
     for (Result result in results) {
       Employment.searchResults.add(result);
     }

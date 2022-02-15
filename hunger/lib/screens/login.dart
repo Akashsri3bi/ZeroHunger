@@ -31,10 +31,7 @@ class _LoginState extends State<Login> {
                       )),
                 )),
             Container(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 20
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Stack(
                 children: [
                   Container(
@@ -54,7 +51,8 @@ class _LoginState extends State<Login> {
                 children: <Widget>[
                   TextField(
                     controller: emailController,
-                    style: const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
+                    style:
+                        const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       labelText: 'Email',
@@ -80,7 +78,8 @@ class _LoginState extends State<Login> {
                 children: <Widget>[
                   TextField(
                     controller: passwordController,
-                    style: const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
+                    style:
+                        const TextStyle(fontSize: 21, fontFamily: 'helvetica'),
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(
@@ -125,10 +124,11 @@ class _LoginState extends State<Login> {
                 elevation: 5,
                 child: GestureDetector(
                   onTap: () async {
-                    await authService.signIn(emailController.text, passwordController.text).then((value)
-                    {
-                      return Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => Home()));
+                    await authService
+                        .signIn(emailController.text, passwordController.text)
+                        .then((value) {
+                      return Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     });
                   },
                   child: const Center(
@@ -193,10 +193,8 @@ class _LoginState extends State<Login> {
                 const SizedBox(width: 8),
                 InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Signup()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Signup()));
                     },
                     child: const Text(
                       'Signup',

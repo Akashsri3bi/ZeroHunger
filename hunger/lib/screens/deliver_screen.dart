@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/models/restaurant_model.dart';
 
 class DeliverScreen extends StatefulWidget {
   final String location;
@@ -16,6 +17,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
   TextEditingController controller = TextEditingController();
   TextEditingController Wastecontroller = TextEditingController();
   bool isSwitched = false;
+  String? value;
 
   @override
   void initState() {
@@ -41,7 +43,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
+              padding: const EdgeInsets.only(top: 5, left: 8, right: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +51,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                   Center(
                     child: Container(
                       width: 250,
-                      height: 200,
+                      height: 190,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           fit: BoxFit.fill,
@@ -57,6 +59,50 @@ class _DeliverScreenState extends State<DeliverScreen> {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Collector',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Container(
+                            height: 35,
+                            margin: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.green, width: 1),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                  iconSize: 30,
+                                  icon: const Icon(
+                                    Icons.arrow_drop_down,
+                                    color: Colors.black,
+                                  ),
+                                  items: Restaurant.restaurants
+                                      .map(buildMenuItem)
+                                      .toList(),
+                                  value: value,
+                                  isExpanded: true,
+                                  onChanged: (value) => setState(() {
+                                        this.value = value;
+                                      })),
+                            )),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 5,
@@ -193,7 +239,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                                   behavior: SnackBarBehavior.floating,
                                 ));
                           setState(() {
-                            //Simple change of state
+                            //Firestore database to be added
                           });
                         },
                         child: const Text(
@@ -213,4 +259,12 @@ class _DeliverScreenState extends State<DeliverScreen> {
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(Restaurant restaurant) =>
+      DropdownMenuItem(
+          value: restaurant.name,
+          child: Text(
+            restaurant.name,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ));
 }
