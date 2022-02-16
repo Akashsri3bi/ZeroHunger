@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hunger/models/history.dart';
 import 'package:hunger/service/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/screens/login.dart';
@@ -49,9 +50,11 @@ class UserScreen extends StatelessWidget {
               SizedBox(
                 height: 400,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: History.history.length,
                     itemBuilder: (context, index) {
-                      return HistoryCard();
+                      return HistoryCard(
+                        history: History.history[index],
+                      );
                     }),
               )
             ],
@@ -86,7 +89,7 @@ class RatingBox extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: const [
-            //These rating change according to number of donnations or waste deliver
+            //These rating change according to number of donations or waste deliver
             Icon(
               Icons.star,
               color: Colors.green,
@@ -99,6 +102,11 @@ class RatingBox extends StatelessWidget {
             ),
             Icon(
               Icons.star_half,
+              color: Colors.green,
+              size: 35,
+            ),
+            Icon(
+              Icons.star_border,
               color: Colors.green,
               size: 35,
             ),
