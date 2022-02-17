@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.0.20
   sliding_up_panel: ^2.0.0+1
   flutter_signin_button: ^2.0.0
+  image_picker: ^0.8.4+9
 
 dev_dependencies:
   flutter_test:
