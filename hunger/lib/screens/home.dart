@@ -8,6 +8,7 @@ import 'package:hunger/screens/collecting_restaurants_screen.dart';
 import 'package:hunger/screens/help.dart';
 import 'package:hunger/screens/inform.dart';
 import 'package:hunger/screens/map_page.dart';
+import 'package:hunger/screens/market_screen.dart';
 import 'package:hunger/screens/signup.dart';
 import 'package:hunger/screens/user.dart';
 import 'package:hunger/widgets/donation_box.dart';
@@ -25,6 +26,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
     const Donate(),
+    MarketScreen(),
     Inform(),
     Help(),
   ];
@@ -39,30 +41,32 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).backgroundColor,
+          type: BottomNavigationBarType.fixed,
           onTap: _onItemTapped,
           selectedItemColor: Colors.lightBlue,
           currentIndex: _selectedIndex,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               label: 'Home',
-              icon: const Icon(
+              icon: Icon(
                 Icons.home,
               ),
-              backgroundColor: Theme.of(context).backgroundColor,
+            ),
+            BottomNavigationBarItem(
+              label: 'Market',
+              icon: Icon(Icons.shopping_basket),
             ),
             BottomNavigationBarItem(
               label: 'Inform',
-              icon: const Icon(
+              icon: Icon(
                 Icons.info_sharp,
               ),
-              backgroundColor: Theme.of(context).backgroundColor,
             ),
             BottomNavigationBarItem(
               label: 'help',
-              icon: const Icon(
+              icon: Icon(
                 Icons.help,
               ),
-              backgroundColor: Theme.of(context).backgroundColor,
             ),
           ]),
       body: _widgetOptions.elementAt(_selectedIndex),
