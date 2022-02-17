@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hunger/config/theme.dart';
+import 'package:hunger/screens/help.dart';
 import 'package:hunger/screens/home.dart';
 import 'package:hunger/screens/splash_screen.dart';
 import 'package:hunger/screens/login.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Hunger',
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: Home(),
     );
   }
 }
