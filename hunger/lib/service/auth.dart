@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 String userName = '';
 String userSurname = '';
@@ -35,7 +34,6 @@ class AuthService {
   }
 
   getData() async {
-    var user = auth.currentUser;
     //userName = firestore.collection('Person').where(FieldPath.documentId, isEqualTo: user?.uid).get().toString();
     //userSurname = firestore.collection('Person').where(FieldPath.documentId, isEqualTo: user?.uid).get().toString();
   }

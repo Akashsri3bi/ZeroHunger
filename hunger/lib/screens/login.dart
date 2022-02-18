@@ -5,6 +5,8 @@ import 'package:hunger/service/auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -123,7 +125,7 @@ class _LoginState extends State<Login> {
               ),
             ),
             const SizedBox(height: 30.0),
-            Container(
+            SizedBox(
               height: 42,
               width: 320,
               child: Flexible(
@@ -149,8 +151,10 @@ class _LoginState extends State<Login> {
                         setState(() {
                           loadingIsVisible = false;
                         });
-                        return Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                        return Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()));
                       });
                     },
                     child: const Expanded(

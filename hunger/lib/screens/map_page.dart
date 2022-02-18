@@ -8,6 +8,8 @@ import 'package:hunger/screens/deliver_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MapPage extends StatefulWidget {
+  const MapPage({Key? key}) : super(key: key);
+
   @override
   State createState() {
     return MapPageState();
@@ -23,7 +25,7 @@ class MapPageState extends State {
   @override
   void initState() {
     super.initState();
-    _cameraPosition = CameraPosition(
+    _cameraPosition = const CameraPosition(
         target: LatLng(0, 0),
         zoom: 19.151926040649414,
         tilt: 59.440717697143555);
@@ -58,7 +60,7 @@ class MapPageState extends State {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3.0),
                 color: Colors.white,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Colors.grey,
                       offset: Offset(1.0, 5.0),
@@ -67,7 +69,7 @@ class MapPageState extends State {
                 ],
               ),
               child: TextField(
-                style: TextStyle(fontFamily: 'roboto', fontSize: 15),
+                style: const TextStyle(fontFamily: 'roboto', fontSize: 15),
                 cursorColor: Colors.black,
                 controller: locationController,
                 decoration: InputDecoration(
@@ -140,7 +142,7 @@ class MapPageState extends State {
                     onPressed: () {
                       getChangedLocation(locationController.text);
                     },
-                    child: FittedBox(
+                    child: const FittedBox(
                       child: Icon(Icons.search),
                       fit: BoxFit.contain,
                     ))),

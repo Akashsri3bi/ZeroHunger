@@ -6,6 +6,8 @@ import 'package:hunger/repository/employment_repo.dart';
 import 'package:hunger/widgets/job_details_card.dart';
 
 class EmploymentSearchScreen extends StatefulWidget {
+  const EmploymentSearchScreen({Key? key}) : super(key: key);
+
   @override
   State<EmploymentSearchScreen> createState() => _EmploymentSearchScreenState();
 }
@@ -69,7 +71,7 @@ class _EmploymentSearchScreenState extends State<EmploymentSearchScreen> {
                         return JobDetailsCard(
                             result: Employment.searchResults[index]);
                       } catch (e) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }
                     },
                   )

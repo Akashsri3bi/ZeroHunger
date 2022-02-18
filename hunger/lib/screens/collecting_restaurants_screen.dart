@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hunger/models/restaurant_model.dart';
 import 'package:hunger/widgets/online_food_card.dart';
 import 'package:hunger/widgets/restaurant_card.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class CollectingRestaurants extends StatelessWidget {
+  const CollectingRestaurants({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     BorderRadiusGeometry radius = const BorderRadius.only(

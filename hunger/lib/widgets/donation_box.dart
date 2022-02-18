@@ -75,7 +75,7 @@ class _DonationBoxState extends State<DonationBox> {
                           ))
                         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content:
-                                Text('\$${sum} Donated to Farmers Foundation'),
+                                Text('\$$sum Donated to Farmers Foundation'),
                             behavior: SnackBarBehavior.floating,
                           ));
                     setState(() {

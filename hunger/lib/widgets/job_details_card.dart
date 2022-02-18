@@ -76,7 +76,7 @@ class JobDetailsCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.donut_small),
+                    const Icon(Icons.donut_small),
                     Expanded(
                       child: Text(
                         result.description,

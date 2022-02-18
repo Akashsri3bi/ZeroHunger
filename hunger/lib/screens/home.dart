@@ -13,11 +13,11 @@ import 'package:hunger/screens/signup.dart';
 import 'package:hunger/screens/user.dart';
 import 'package:hunger/widgets/donation_box.dart';
 import 'package:hunger/widgets/employment_search_box.dart';
-import 'package:hunger/service/auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -26,9 +26,9 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
     const Donate(),
-    MarketScreen(),
-    Inform(),
-    Help(),
+    const MarketScreen(),
+    const Inform(),
+    const Help(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -91,7 +91,7 @@ class Donate extends StatelessWidget {
         body: SlidingUpPanel(
           minHeight: 60,
           maxHeight: MediaQuery.of(context).size.height - 40,
-          panel: CollectingRestaurants(),
+          panel: const CollectingRestaurants(),
           borderRadius: radius,
           collapsed: Container(
             decoration:
@@ -132,7 +132,7 @@ class Donate extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  EmploymentSearchBox(),
+                  const EmploymentSearchBox(),
                   const SizedBox(
                     height: 5,
                   ),
@@ -155,7 +155,7 @@ class Donate extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MapPage(),
+                                builder: (context) => const MapPage(),
                               ));
                         },
                         child: Container(
@@ -219,7 +219,7 @@ class Donate extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MapPage(),
+                                      builder: (context) => const MapPage(),
                                     ));
                               },
                               child: Text(
@@ -295,7 +295,7 @@ class CustomAppBar extends StatelessWidget with ObstructingPreferredSizeWidget {
             color: Colors.yellow[300],
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UserScreen()));
+                  MaterialPageRoute(builder: (context) => const UserScreen()));
             },
           ),
         ]));
