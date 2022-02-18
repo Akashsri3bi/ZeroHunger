@@ -3,6 +3,8 @@ import 'package:hunger/models/crops.dart';
 import 'package:hunger/widgets/crops_card.dart';
 
 class MarketScreen extends StatelessWidget {
+  const MarketScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

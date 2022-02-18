@@ -10,8 +10,8 @@ class CropsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => FarmersDetailScreen()));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const FarmersDetailScreen()));
       },
       child: Container(
         child: Column(children: [

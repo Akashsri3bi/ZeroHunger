@@ -3,6 +3,8 @@ import 'package:hunger/models/farmers.dart';
 import 'package:hunger/widgets/farmers_card.dart';
 
 class FarmersDetailScreen extends StatelessWidget {
+  const FarmersDetailScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(

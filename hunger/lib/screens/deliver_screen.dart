@@ -7,7 +7,7 @@ import 'package:hunger/models/restaurant_model.dart';
 class DeliverScreen extends StatefulWidget {
   final String location;
 
-  DeliverScreen({Key? key, required this.location}) : super(key: key);
+  const DeliverScreen({Key? key, required this.location}) : super(key: key);
 
   @override
   State<DeliverScreen> createState() => _DeliverScreenState();

@@ -4,6 +4,7 @@ class Employment {
 }
 
 class Result {
+  // ignore: non_constant_identifier_names
   final String salary_min;
   final String place;
   final String description;

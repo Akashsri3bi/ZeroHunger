@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hunger/screens/home.dart';
 import 'package:hunger/screens/login.dart';
 
 class Splash extends StatefulWidget {
@@ -19,7 +18,7 @@ class _SplashState extends State<Splash> {
   navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => Login()));
+        context, MaterialPageRoute(builder: (context) => const Login()));
   }
 
   @override

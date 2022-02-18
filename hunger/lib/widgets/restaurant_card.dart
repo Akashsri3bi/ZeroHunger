@@ -48,8 +48,8 @@ class RestaurantCard extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MapPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const MapPage()));
                   },
                   child: Text(
                     'Deliver Now',
@@ -71,7 +71,7 @@ class RestaurantCard extends StatelessWidget {
 class PromoCustomClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0, 0);
     path.lineTo(0, size.height);
     path.lineTo(190, size.height);

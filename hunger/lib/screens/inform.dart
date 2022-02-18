@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Inform extends StatelessWidget {
+  const Inform({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,15 +17,15 @@ class Inform extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
       ),
-      body: SingleChildScrollView(
-          //Todo make this screen
+      body: const SingleChildScrollView(
+        //Todo make this screen
         child: InformPage(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ImageSelection()));
+              MaterialPageRoute(builder: (context) => const ImageSelection()));
         },
         child: const Icon(Icons.add),
         backgroundColor: Colors.lightGreen[700],
@@ -32,6 +33,7 @@ class Inform extends StatelessWidget {
     );
   }
 }
+
 class InformPage extends StatefulWidget {
   const InformPage({Key? key}) : super(key: key);
 
@@ -42,11 +44,10 @@ class InformPage extends StatefulWidget {
 class _InformPageState extends State<InformPage> {
   @override
   Widget build(BuildContext context) {
-    return Container( //shows posts that have made
+    return Container(
+      //shows posts that have made
       child: Column(
-        children: const <Widget> [
-
-        ],
+        children: const <Widget>[],
       ),
     );
   }
@@ -63,46 +64,49 @@ class _ImageSelectionState extends State<ImageSelection> {
   XFile? file;
   @override
   Widget build(BuildContext context) {
-    return file == null ? selectImage(context) : InformPage();//will go to posting page
+    return file == null
+        ? selectImage(context)
+        : const InformPage(); //will go to posting page
   }
-  selectImage(parentContext){
+
+  selectImage(parentContext) {
     return showDialog(
         context: parentContext,
         builder: (context) {
           return SimpleDialog(
-            title: Text("Create Post"),
-            children: <Widget> [
+            title: const Text("Create Post"),
+            children: <Widget>[
               SimpleDialogOption(
-                child: Text("Capture Photo with Camera"),
+                child: const Text("Capture Photo with Camera"),
                 onPressed: takePhoto,
               ),
               SimpleDialogOption(
-                child: Text("Image from Gallery"),
+                child: const Text("Image from Gallery"),
                 onPressed: ChooseFromGallery,
               ),
               SimpleDialogOption(
-                child: Text("Cancel"),
+                child: const Text("Cancel"),
                 onPressed: () {
                   Navigator.pop(context);
-                  },
+                },
               ),
             ],
           );
-        }
-    );
+        });
   }
-  ChooseFromGallery() async{
+
+  ChooseFromGallery() async {
     Navigator.pop(context);
     XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       this.file = file;
     });
   }
-  takePhoto() async{
+
+  takePhoto() async {
     Navigator.pop(context);
-    XFile? file = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-        maxHeight: 675, maxWidth: 960);
+    XFile? file = await ImagePicker()
+        .pickImage(source: ImageSource.camera, maxHeight: 675, maxWidth: 960);
     setState(() {
       this.file = file;
     });

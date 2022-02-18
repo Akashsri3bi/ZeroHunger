@@ -3,6 +3,8 @@ import 'package:hunger/models/filter.dart';
 import 'package:hunger/screens/employment_search_screen.dart';
 
 class EmploymentSearchBox extends StatefulWidget {
+  const EmploymentSearchBox({Key? key}) : super(key: key);
+
   @override
   State<EmploymentSearchBox> createState() => _EmploymentSearchBoxState();
 }
@@ -18,7 +20,7 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EmploymentSearchScreen(),
+                  builder: (context) => const EmploymentSearchScreen(),
                 ));
           },
           child: Container(

@@ -6,6 +6,8 @@ import 'package:hunger/screens/login.dart';
 import 'package:hunger/widgets/history_card.dart';
 
 class UserScreen extends StatelessWidget {
+  const UserScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +68,8 @@ class UserScreen extends StatelessWidget {
 }
 
 class RatingBox extends StatelessWidget {
+  const RatingBox({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -150,8 +154,10 @@ class UserMain extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       await authService.signOut();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Login()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
                     },
                     child: Text(
                       'Log out >',
