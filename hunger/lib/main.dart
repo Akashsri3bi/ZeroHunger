@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hunger/config/theme.dart';
 import 'package:hunger/screens/splash_screen.dart';
-
+import 'package:hunger/screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
