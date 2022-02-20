@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Hunger',
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: const Splash(),
+      home: const Home(),
     );
   }
 }
