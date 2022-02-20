@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Inform extends StatelessWidget {
@@ -23,10 +24,8 @@ class Inform extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ImageSelection()));
-        },
+        onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ImageSelection())),
         child: const Icon(Icons.add),
         backgroundColor: Colors.lightGreen[700],
       ),
@@ -47,7 +46,7 @@ class _InformPageState extends State<InformPage> {
     return Container(
       //shows posts that have made
       child: Column(
-        children: const <Widget>[],
+        children: const [],
       ),
     );
   }
@@ -69,7 +68,7 @@ class _ImageSelectionState extends State<ImageSelection> {
         : const InformPage(); //will go to posting page
   }
 
-  selectImage(parentContext) {
+  selectImage(BuildContext parentContext) {
     return showDialog(
         context: parentContext,
         builder: (context) {
