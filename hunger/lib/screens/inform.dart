@@ -1,25 +1,18 @@
-import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hunger/screens/post.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:marquee/marquee.dart';
 
-final FirebaseAuth auth = FirebaseAuth.instance;
-final User? currentUser = auth.currentUser;
-File? file;
-String photoUrl = currentUser!.photoURL!;
+class Inform extends StatefulWidget {
+  const Inform({Key? key}) : super(key: key);
 
-class InformPage extends StatefulWidget {
-  const InformPage({Key? key}) : super(key: key);
   @override
-  _InformPageState createState() => _InformPageState();
+  _InformState createState() => _InformState();
 }
 
-class _InformPageState extends State<InformPage> {
+class _InformState extends State<Inform> {
+  XFile? file;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +67,7 @@ class _InformPageState extends State<InformPage> {
                     child: Center(
                       child: Marquee(
                         text:
-                            'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
+                        'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
                             '     India is ranked 101 among 116 countries in the Global Hunger Index (GHI)'
                             '     An estimated 13 million people are waking up severely hungry every day in the Horn of Africa',
                         scrollAxis: Axis.horizontal,
@@ -109,39 +102,18 @@ class _InformPageState extends State<InformPage> {
         context: parentContext,
         builder: (dialogContext) {
           return SimpleDialog(
-            title: const Text("Choose Photo",
-              style: TextStyle(
-                fontSize: 19,
-                fontFamily: "helvetica"
-              ),
-              textAlign: TextAlign.center,
-            ),
-            children: <Widget> [
+            title: const Text("Choose photo"),
+            children: <Widget>[
               SimpleDialogOption(
-                child: const Text("Capture with Camera",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "helvetica"
-                  ),
-                ),
+                child: const Text("Capture with Camera"),
                 onPressed: takePhoto,
               ),
               SimpleDialogOption(
-                child: const Text("Select from Gallery",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "helvetica",
-                  ),
-                ),
+                child: const Text("Select from Gallery"),
                 onPressed: chooseFromGallery,
               ),
               SimpleDialogOption(
-                child: const Text("Cancel",
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontFamily: "helvetica",
-                    ),
-                ),
+                child: const Text("Cancel"),
                 onPressed: () {
                   Navigator.pop(parentContext);
                 },
@@ -153,114 +125,18 @@ class _InformPageState extends State<InformPage> {
 
   chooseFromGallery() async {
     Navigator.pop(context);
-    dynamic file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
-      file = file;
+      this.file = file;
     });
   }
 
   takePhoto() async {
     Navigator.pop(context);
-    dynamic file = await ImagePicker().pickImage(
-        source: ImageSource.camera,
-        maxHeight: 67500, maxWidth: 96000);
+    XFile? file = await ImagePicker().pickImage(
+        source: ImageSource.camera, maxHeight: 67500, maxWidth: 96000);
     setState(() {
-      file = file;
-    });
-  }
-}
-
-class PostingPage extends StatefulWidget {
-  const PostingPage({Key? key}) : super(key: key);
-
-  @override
-  _PostingPageState createState() => _PostingPageState();
-}
-
-class _PostingPageState extends State<PostingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white70,
-        leading: IconButton(
-            icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black),
-            onPressed: clearImage
-          // if there is image and user wants to go back
-        ),
-        title: Text("Create Post",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 28
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => print("pressed"),
-            child: Text("POST",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 23
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: ListView(
-        children: <Widget> [
-          Container(
-            height: 220,
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 16/9,
-                child: Container(
-                  decoration: BoxDecoration(
-                      //image: DecorationImage(
-                      //    fit: BoxFit.cover,
-                      //    image: FileImage(file!)
-                      //)
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-          ),
-          ListTile(
-            title: Container(
-              width: 250.0,
-              child: const TextField(
-                decoration: InputDecoration(
-                  hintText: "Write a title..",
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-          ),
-          const Divider(),
-          ListTile(
-            title: Container(
-              width: 250.0,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Write something...",
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-  clearImage(){
-    setState(() {
-      //file = null;
+      this.file = file;
     });
   }
 }
