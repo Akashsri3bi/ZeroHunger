@@ -50,6 +50,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   image_picker: ^0.8.4+9
   marquee: ^2.2.1
+  readmore: ^2.1.0
 
 dev_dependencies:
   flutter_test:
