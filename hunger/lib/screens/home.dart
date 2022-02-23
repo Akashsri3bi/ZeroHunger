@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   static final List<Widget> _widgetOptions = [
     const Donate(),
     const MarketScreen(),
-    const Inform(),
+    const InformPage(),
     const Help(),
   ];
   void _onItemTapped(int index) {

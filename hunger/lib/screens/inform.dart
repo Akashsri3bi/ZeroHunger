@@ -1,18 +1,21 @@
+import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hunger/screens/post.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:marquee/marquee.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Inform extends StatefulWidget {
-  const Inform({Key? key}) : super(key: key);
+class InformPage extends StatefulWidget {
+  const InformPage({Key? key}) : super(key: key);
 
   @override
-  _InformState createState() => _InformState();
+  _InformPageState createState() => _InformPageState();
 }
 
-class _InformState extends State<Inform> {
-  XFile? file;
+class _InformPageState extends State<InformPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,21 +29,22 @@ class _InformState extends State<Inform> {
         ),
         backgroundColor: Theme.of(context).backgroundColor,
       ),
-      body: Stack(children: [
-        Scaffold(
-          body: Container(),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Post()));
-              //selectImage(context);
-            },
-            child: const Icon(Icons.add),
-            backgroundColor: Colors.lightGreen[700],
+      body: Stack(
+        children: [
+          Scaffold(
+            body: Container(), // posted posts will be displayed here
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Post()));
+                //selectImage(context);
+              },
+              child: const Icon(Icons.add),
+              backgroundColor: Colors.lightGreen[700],
+            ),
           ),
-        ),
-        Positioned(
+          Positioned( // for news
             top: 10,
             child: Container(
               height: 30,
@@ -67,7 +71,7 @@ class _InformState extends State<Inform> {
                     child: Center(
                       child: Marquee(
                         text:
-                            'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
+                        'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
                             '     India is ranked 101 among 116 countries in the Global Hunger Index (GHI)'
                             '     An estimated 13 million people are waking up severely hungry every day in the Horn of Africa',
                         scrollAxis: Axis.horizontal,
@@ -92,51 +96,10 @@ class _InformState extends State<Inform> {
                   ),
                 ],
               ),
-            ))
-      ]),
+            ),
+          ),
+        ],
+      ),
     );
-  }
-
-  selectImage(parentContext) {
-    return showDialog(
-        context: parentContext,
-        builder: (dialogContext) {
-          return SimpleDialog(
-            title: const Text("Choose photo"),
-            children: <Widget>[
-              SimpleDialogOption(
-                child: const Text("Capture with Camera"),
-                onPressed: takePhoto,
-              ),
-              SimpleDialogOption(
-                child: const Text("Select from Gallery"),
-                onPressed: chooseFromGallery,
-              ),
-              SimpleDialogOption(
-                child: const Text("Cancel"),
-                onPressed: () {
-                  Navigator.pop(parentContext);
-                },
-              ),
-            ],
-          );
-        });
-  }
-
-  chooseFromGallery() async {
-    Navigator.pop(context);
-    XFile? file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      this.file = file;
-    });
-  }
-
-  takePhoto() async {
-    Navigator.pop(context);
-    XFile? file = await ImagePicker().pickImage(
-        source: ImageSource.camera, maxHeight: 67500, maxWidth: 96000);
-    setState(() {
-      this.file = file;
-    });
   }
 }
