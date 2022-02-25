@@ -2,15 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-class PostCardLayout extends StatelessWidget {
-  bool isHavingImage = false ;
+class PostCardLayout extends StatefulWidget {
+  PostCardLayout({Key? key}) : super(key: key);
 
-  PostCardLayout({Key? key}) : super(key: key); 
+  @override
+  State<PostCardLayout> createState() => _PostCardLayoutState();
+}
+
+class _PostCardLayoutState extends State<PostCardLayout> {
+  bool isHavingImage = true;
+  var container_height = 150;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      margin: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
+    return Expanded(
+      /*height: 300,
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      */
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,7 +27,7 @@ class PostCardLayout extends StatelessWidget {
           //Header layout ,
           Container(
             padding: const EdgeInsets.all(8.0),
-            height: 50,
+            height: 65,
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(5),
@@ -26,11 +35,12 @@ class PostCardLayout extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                      height: 40,
-                      width: 40,
+                      height: 55,
+                      width: 55,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(''), fit: BoxFit.fill),
+                              image: AssetImage('assets/person1.jpg'),
+                              fit: BoxFit.fill),
                           shape: BoxShape.circle)),
                   const SizedBox(
                     width: 10,
@@ -69,19 +79,40 @@ class PostCardLayout extends StatelessWidget {
           const SizedBox(
             height: 2,
           ),
-          const ReadMoreText(
-            'Title data coming from firebase database',
-            trimLines: 3,
-            colorClickableText: Colors.blue,
-            trimMode: TrimMode.Line,
-            trimCollapsedText: 'Show more',
-            trimExpandedText: 'Show less',
-            moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
+            child: ReadMoreText(
+              'Title data coming from firebase database',
+              trimLines: 2,
+              colorClickableText: Colors.blue,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'Show more',
+              trimExpandedText: 'Show less',
+              style: TextStyle(
+                  color: Colors.black, fontFamily: 'Roboto', fontSize: 18),
+              moreStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black),
+            ),
           ),
           const SizedBox(
             height: 2,
           ),
-          isHavingImage ? Expanded(child: Image.network('')) : Container() ,
+          isHavingImage
+              ?
+              /* Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    height: 250,
+                    width: double.infinity - 40,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/waste2.png'),
+                          fit: BoxFit.fill),
+                    ),
+                  )*/
+              Wrap(children: [Image.asset('assets/waste2.png')])
+              : Container(),
         ],
       ),
     );

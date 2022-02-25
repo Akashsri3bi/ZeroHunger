@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 final User? currentUser = auth.currentUser;
-late File? file;
+File? file = null;
 String photoUrl = currentUser!.photoURL!;
 
 class Post extends StatefulWidget {
@@ -18,6 +20,15 @@ class Post extends StatefulWidget {
 class _PostState extends State<Post> {
   bool changed = false;
   int selectedIndex = 0;
+  TextEditingController controller = TextEditingController();
+  @override
+  @protected
+  // ignore: must_call_super
+  void dispose() {
+    file = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -31,10 +42,19 @@ class _PostState extends State<Post> {
                 .copyWith(color: Colors.white),
           ),
           backgroundColor: Theme.of(context).backgroundColor,
-          actions: [ InkWell(
+          actions: [
+            InkWell(
               onTap: () {
                 if (changed) {
                   //Code to be executed if there is some material post .
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Posting...'),
+                    behavior: SnackBarBehavior.floating,
+                  ));
+                  //Code for the image and text to be sent to firebase
+                  String text = controller.text;
+                  if (file != null) {}
+                  Navigator.pop(context);
                 }
               },
               splashColor: Colors.white,
@@ -48,149 +68,271 @@ class _PostState extends State<Post> {
             ),
           ],
         ),
-        body: ListView(
-          children: <Widget> [
-            Visibility( //this is the area to display image
-              child: Container(
-                height: 220,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Center(
-                  child: AspectRatio(
-                    aspectRatio: 16/9,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        //image: DecorationImage(
-                        //  fit: BoxFit.cover,
-                        //  image: FileImage(file!),
-                        //)
-                      ),
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height - 80,
+            color: Colors.white,
+            width: double.infinity,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //Header layout ,
+                  Container(
+                      padding: const EdgeInsets.all(8.0),
+                      height: 70,
+                      width: double.infinity,
+                      child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                    height: 55,
+                                    width: 56,
+                                    decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/person1.jpg'),
+                                            fit: BoxFit.fill),
+                                        shape: BoxShape.circle)),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: const [
+                                      SizedBox(
+                                        height: 3,
+                                      ),
+                                      Text(
+                                        'Akash Srivastava',
+                                        style: TextStyle(
+                                            fontFamily: "Roboto",
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]))),
+
+                  file == null
+                      ? Expanded(
+                          child: TextField(
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                setState(() {
+                                  changed = true;
+                                });
+                              }
+
+                              if (value.isEmpty) {
+                                setState(() {
+                                  changed = false;
+                                });
+                              }
+                            },
+                            style: const TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 20,
+                            ),
+                            expands: true,
+                            minLines: null,
+                            maxLines: null,
+                            controller: controller,
+                            decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintStyle: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 20,
+                              ),
+                              border: InputBorder.none,
+                              hintText: "Share Your Contribution Here !",
+                              contentPadding: EdgeInsets.only(
+                                  left: 20.0, bottom: 5.0, top: 12.5),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          height: 500,
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 60,
+                                child: TextField(
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      if (mounted) {
+                                        setState(() {
+                                          changed = true;
+                                        });
+                                      }
+                                    }
+
+                                    if (value.isEmpty) {
+                                      if (mounted) {
+                                        setState(() {
+                                          changed = false;
+                                        });
+                                      }
+                                    }
+                                  },
+                                  style: const TextStyle(
+                                    fontFamily: 'Roboto',
+                                    fontSize: 20,
+                                  ),
+                                  expands: true,
+                                  minLines: null,
+                                  maxLines: null,
+                                  controller: controller,
+                                  decoration: const InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintStyle: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 20,
+                                    ),
+                                    border: InputBorder.none,
+                                    hintText: "Share Your Contribution Here !",
+                                    contentPadding: EdgeInsets.only(
+                                        left: 20.0, bottom: 5.0, top: 12.5),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                height: 250,
+                                width: double.infinity - 40,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(file!),
+                                      fit: BoxFit.fill),
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        InkWell(
+                            onTap: () {
+                              takePhoto();
+                            },
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.grey[700],
+                              size: 30,
+                            )),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        InkWell(
+                            onTap: () {
+                              chooseFromGallery();
+                            },
+                            child: Icon(
+                              Icons.image,
+                              color: Colors.grey[700],
+                              size: 30,
+                            )),
+                      ],
                     ),
                   ),
-                ),
-              ),
-              visible: true,//doesImageExist(), //display it if there is an image
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
-              child: Expanded(
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Container(
-                        width: 250.0,
-                        child: const TextField(
-                          decoration: InputDecoration(
-                            hintText: "Write a title..",
-                            border: InputBorder.none,
-                          ),
-                          style: TextStyle(
-                            fontFamily: "helvetica",
-                            fontSize: 19,
-                          ),
-                        ),
-                      ),
-                    ), const Divider(),
-                    const ListTile(
-                      title: TextField(
-                        decoration: InputDecoration(
-                          hintText: "Write something...",
-                          border: InputBorder.none,
-                        ),
-                        style: TextStyle(
-                          fontFamily: "helvetica",
-                          fontSize: 19,
-                        ),
-                        maxLines: null,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+                ]),
+          ),
         ),
-        //bottomNavigationBar: BottomNavigationBar(
-        //  items: const <BottomNavigationBarItem>[
-        //    BottomNavigationBarItem(
-        //      icon: Icon(Icons.camera_alt),
-        //      label: 'Add photo',
-        //    ),
-        //  ],
-        //  currentIndex: selectedIndex,
-        //  onTap: goToSelectImage,
-        //),
       ),
     );
   }
- //void goToSelectImage(int index) {}
+  //void goToSelectImage(int index) {}
 
+  /*
   selectImage(parentContext) {
     return showDialog(
-      context: parentContext,
-      builder: (dialogContext) {
-        return SimpleDialog(
-          title: const Text("Choose Photo",
-            style: TextStyle(
-                fontSize: 19,
-                fontFamily: "helvetica"
+        context: parentContext,
+        builder: (dialogContext) {
+          return SimpleDialog(
+            title: const Text(
+              "Choose Photo",
+              style: TextStyle(fontSize: 19, fontFamily: "helvetica"),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-          children: <Widget> [
-            SimpleDialogOption(
-              child: const Text("Capture with Camera",
-                style: TextStyle(
+            children: <Widget>[
+              SimpleDialogOption(
+                child: const Text(
+                  "Capture with Camera",
+                  style: TextStyle(fontSize: 18, fontFamily: "helvetica"),
+                ),
+                onPressed: takePhoto(),
+              ),
+              SimpleDialogOption(
+                child: const Text(
+                  "Select from Gallery",
+                  style: TextStyle(
                     fontSize: 18,
-                    fontFamily: "helvetica"
+                    fontFamily: "helvetica",
+                  ),
                 ),
+                onPressed: chooseFromGallery(),
               ),
-              onPressed: takePhoto(),
-            ),
-            SimpleDialogOption(
-              child: const Text("Select from Gallery",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: "helvetica",
+              SimpleDialogOption(
+                child: const Text(
+                  "Cancel",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: "helvetica",
+                  ),
                 ),
+                onPressed: () {
+                  Navigator.pop(parentContext);
+                },
               ),
-              onPressed: chooseFromGallery(),
-            ),
-            SimpleDialogOption(
-              child: const Text("Cancel",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontFamily: "helvetica",
-                ),
-              ),
-              onPressed: () {
-                Navigator.pop(parentContext);
-              },
-            ),
-          ],
-        );
-      }
-    );
+            ],
+          );
+        });
   }
+  */
+
   chooseFromGallery() async {
-    Navigator.pop(context);
-    dynamic _file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    XFile? _file = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
-      file = _file;
+      file = File(_file!.path);
     });
   }
+
   takePhoto() async {
-    Navigator.pop(context);
-    dynamic _file = await ImagePicker().pickImage(
+    XFile? _file = await ImagePicker().pickImage(
         source: ImageSource.camera, maxHeight: 67500, maxWidth: 96000);
     setState(() {
-      file = _file;
+      file = File(_file!.path);
     });
   }
-  bool doesImageExist(){
-    if(file == null) {
-        return false;
-    }
-    else {
+
+  bool doesImageExist() {
+    if (file == null) {
+      return false;
+    } else {
       return true;
     }
   }
