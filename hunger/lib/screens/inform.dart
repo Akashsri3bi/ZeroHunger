@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hunger/screens/post.dart';
+import 'package:hunger/widgets/post_card_layout.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:marquee/marquee.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +33,21 @@ class _InformPageState extends State<InformPage> {
       body: Stack(
         children: [
           Scaffold(
-            body: Container(), // posted posts will be displayed here
+            body: Container(
+              height: MediaQuery.of(context).size.height - 150,
+              width: double.infinity,
+              child: ListView.separated(
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      thickness: 8,
+                      color: Colors.grey[300],
+                    );
+                  },
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return PostCardLayout();
+                  }),
+            ), //Done
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: FloatingActionButton(
               onPressed: () {
@@ -44,7 +59,8 @@ class _InformPageState extends State<InformPage> {
               backgroundColor: Colors.lightGreen[700],
             ),
           ),
-          Positioned( // for news
+          Positioned(
+            // for news
             top: 10,
             child: Container(
               height: 30,
@@ -71,7 +87,7 @@ class _InformPageState extends State<InformPage> {
                     child: Center(
                       child: Marquee(
                         text:
-                        'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
+                            'We pray for rain: Ethiopia faces catastrophic hunger as cattle perish in severe'
                             '     India is ranked 101 among 116 countries in the Global Hunger Index (GHI)'
                             '     An estimated 13 million people are waking up severely hungry every day in the Horn of Africa',
                         scrollAxis: Axis.horizontal,
