@@ -3,7 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
 class PostCardLayout extends StatefulWidget {
-  PostCardLayout({Key? key}) : super(key: key);
+  final String name;
+  final String title;
+  final String imageUrl;
+  PostCardLayout(
+      {Key? key,
+      required this.name,
+      required this.title,
+      required this.imageUrl})
+      : super(key: key);
 
   @override
   State<PostCardLayout> createState() => _PostCardLayoutState();
@@ -11,7 +19,6 @@ class PostCardLayout extends StatefulWidget {
 
 class _PostCardLayoutState extends State<PostCardLayout> {
   bool isHavingImage = true;
-  var container_height = 150;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +57,9 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Akash Srivastava',
-                          style: TextStyle(
+                        Text(
+                          widget.name,
+                          style: const TextStyle(
                               fontFamily: "Roboto",
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
@@ -79,18 +86,18 @@ class _PostCardLayoutState extends State<PostCardLayout> {
           const SizedBox(
             height: 2,
           ),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
             child: ReadMoreText(
-              'Title data coming from firebase database',
+              widget.title,
               trimLines: 2,
               colorClickableText: Colors.blue,
               trimMode: TrimMode.Line,
               trimCollapsedText: 'Show more',
               trimExpandedText: 'Show less',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.black, fontFamily: 'Roboto', fontSize: 18),
-              moreStyle: TextStyle(
+              moreStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.normal,
                   color: Colors.black),
@@ -99,7 +106,7 @@ class _PostCardLayoutState extends State<PostCardLayout> {
           const SizedBox(
             height: 2,
           ),
-          isHavingImage
+          widget.imageUrl.isNotEmpty
               ?
               /* Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -111,8 +118,17 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                           fit: BoxFit.fill),
                     ),
                   )*/
-              Wrap(children: [Image.asset('assets/waste2.png')])
+
+              Wrap(children: [Image.network(widget.imageUrl)])
               : Container(),
+
+          const SizedBox(
+            height: 2,
+          ),
+          Divider(
+            thickness: 8,
+            color: Colors.grey[300],
+          )
         ],
       ),
     );

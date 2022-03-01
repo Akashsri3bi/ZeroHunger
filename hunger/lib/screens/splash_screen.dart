@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hunger/screens/login.dart';
+import 'package:hunger/screens/home.dart';
+import 'package:hunger/screens/new_login.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -9,16 +11,22 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  bool signedin = false;
   @override
   void initState() {
-    super.initState();
+    if (FirebaseAuth.instance.currentUser != null) {
+      signedin = true;
+    }
     navigateToHome();
+    super.initState();
   }
 
   navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const Login()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => signedin ? const Home() : const Signin()));
   }
 
   @override

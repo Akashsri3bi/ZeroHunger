@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +20,7 @@ class Post extends StatefulWidget {
 class _PostState extends State<Post> {
   bool changed = false;
   int selectedIndex = 0;
+  final username = FirebaseAuth.instance.currentUser!.displayName;
   TextEditingController controller = TextEditingController();
   @override
   @protected
@@ -44,7 +45,7 @@ class _PostState extends State<Post> {
           backgroundColor: Theme.of(context).backgroundColor,
           actions: [
             InkWell(
-              onTap: () {
+              onTap: () async {
                 if (changed) {
                   //Code to be executed if there is some material post .
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -53,7 +54,19 @@ class _PostState extends State<Post> {
                   ));
                   //Code for the image and text to be sent to firebase
                   String text = controller.text;
-                  if (file != null) {}
+                  String? name = FirebaseAuth.instance.currentUser!.displayName;
+                  String downloadUrl = "";
+                  if (file != null) {
+                    final fileName = file!.path;
+                    final destination = 'files/$fileName';
+                    var snapshot = await FirebaseStorage.instance
+                        .ref(destination)
+                        .child('file/')
+                        .putFile(file!);
+                    downloadUrl = await snapshot.ref.getDownloadURL();
+                  }
+
+                  createPost(name!, text, downloadUrl);
                   Navigator.pop(context);
                 }
               },
@@ -104,13 +117,13 @@ class _PostState extends State<Post> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: const [
-                                      SizedBox(
+                                    children: [
+                                      const SizedBox(
                                         height: 3,
                                       ),
                                       Text(
-                                        'Akash Srivastava',
-                                        style: TextStyle(
+                                        username!,
+                                        style: const TextStyle(
                                             fontFamily: "Roboto",
                                             fontSize: 16,
                                             fontWeight: FontWeight.normal),
@@ -312,13 +325,29 @@ class _PostState extends State<Post> {
           );
         });
   }
-  */
+  
+
+  void uploadImage(File file) async {
+    var snapshot =
+        await FirebaseStorage.instance.ref().child('images').putFile(file);
+    downloadUrl = await snapshot.ref.getDownloadURL();
+  }
+*/
 
   chooseFromGallery() async {
     XFile? _file = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       file = File(_file!.path);
     });
+  }
+
+  void createPost(String name, String title, String Url) {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection('UserPosts').add({
+      'name': name,
+      'title': title,
+      'imageUrl': Url,
+    }).then((value) => null);
   }
 
   takePhoto() async {

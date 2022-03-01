@@ -17,10 +17,12 @@ class InformPage extends StatefulWidget {
 }
 
 class _InformPageState extends State<InformPage> {
+  final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Inform',
           style: Theme.of(context)
@@ -34,20 +36,28 @@ class _InformPageState extends State<InformPage> {
         children: [
           Scaffold(
             body: Container(
-              height: MediaQuery.of(context).size.height - 150,
-              width: double.infinity,
-              child: ListView.separated(
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      thickness: 8,
-                      color: Colors.grey[300],
-                    );
+                height: MediaQuery.of(context).size.height - 140,
+                width: double.infinity,
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: db.collection('UserPosts').snapshots(),
+                  builder: (context, snapshots) {
+                    if (!snapshots.hasData) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      //Show list View of data
+                      return ListView(
+                        children: snapshots.data!.docs.map((doc) {
+                          return PostCardLayout(
+                              name: doc.get('name'),
+                              title: doc.get('title'),
+                              imageUrl: doc.get('imageUrl'));
+                        }).toList(),
+                      );
+                    }
                   },
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return PostCardLayout();
-                  }),
-            ), //Done
+                )), //Done
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: FloatingActionButton(
               onPressed: () {
