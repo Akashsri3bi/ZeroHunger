@@ -9,7 +9,7 @@ import 'package:hunger/screens/help.dart';
 import 'package:hunger/screens/inform.dart';
 import 'package:hunger/screens/map_page.dart';
 import 'package:hunger/screens/market_screen.dart';
-import 'package:hunger/screens/signup.dart';
+import 'package:hunger/screens/new_signup.dart';
 import 'package:hunger/screens/user.dart';
 import 'package:hunger/widgets/donation_box.dart';
 import 'package:hunger/widgets/employment_search_box.dart';
@@ -282,7 +282,7 @@ class CustomAppBar extends StatelessWidget with ObstructingPreferredSizeWidget {
         title: Row(children: [
           Expanded(
             child: Text(
-              name != null ? 'Hi, ${name.toString()}' : 'Hi, ${Signup.name}',
+              name != null ? 'Hi, ${name.toString()}' : 'Hi, ${SignUp.name}',
               style: Theme.of(context)
                   .textTheme
                   .headline1!

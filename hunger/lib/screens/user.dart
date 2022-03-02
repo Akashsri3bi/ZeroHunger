@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hunger/models/history.dart';
+import 'package:hunger/screens/new_login.dart';
 import 'package:hunger/service/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hunger/screens/login.dart';
 import 'package:hunger/widgets/history_card.dart';
 
 class UserScreen extends StatelessWidget {
@@ -157,7 +157,7 @@ class UserMain extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Login()));
+                              builder: (context) => const Signin()));
                     },
                     child: Text(
                       'Log out >',

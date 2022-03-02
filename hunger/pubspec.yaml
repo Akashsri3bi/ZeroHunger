@@ -52,6 +52,7 @@ dependencies:
   cached_network_image: ^3.2.0
   marquee: ^2.2.1
   readmore: ^2.1.0
+  firebase_storage: ^8.0.1
 
 dev_dependencies:
   flutter_test:

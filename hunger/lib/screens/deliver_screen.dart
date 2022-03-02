@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/models/restaurant_model.dart';
@@ -238,9 +239,8 @@ class _DeliverScreenState extends State<DeliverScreen> {
                                   content: Text('Collection Request Sent!!'),
                                   behavior: SnackBarBehavior.floating,
                                 ));
-                          setState(() {
-                            //Firestore database to be added
-                          });
+                          createDeliveryRequest(
+                              value!, controller.text, Wastecontroller.text);
                         },
                         child: const Text(
                           'Deliver',
@@ -258,6 +258,16 @@ class _DeliverScreenState extends State<DeliverScreen> {
         ),
       ),
     );
+  }
+
+  void createDeliveryRequest(
+      String value, String location, String wasteMaterials) {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection('DeliveryRequests').add({
+      'Collector': value,
+      'location': location,
+      'wasteLeft': wasteMaterials,
+    }).then((value) => null);
   }
 
   DropdownMenuItem<String> buildMenuItem(Restaurant restaurant) =>

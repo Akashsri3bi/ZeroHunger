@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hunger/models/time_shift.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -21,11 +22,14 @@ class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
+    TextEditingController restaurantcontroller = TextEditingController();
     TextEditingController addresscontroller = TextEditingController();
+    TextEditingController emailcontroller = TextEditingController();
     TextEditingController numbercontroller = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Help',
           style: Theme.of(context)
@@ -122,7 +126,7 @@ class _HelpState extends State<Help> {
                               ],
                             ),
                             TextField(
-                              controller: addresscontroller,
+                              controller: emailcontroller,
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey[200],
@@ -255,7 +259,7 @@ class _HelpState extends State<Help> {
                                   ),
                                   onPressed: () {
                                     if (controller.text.isNotEmpty &&
-                                        addresscontroller.text.isNotEmpty &&
+                                        emailcontroller.text.isNotEmpty &&
                                         numbercontroller.text.isNotEmpty) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
@@ -263,6 +267,12 @@ class _HelpState extends State<Help> {
                                             'Welcome  , We will contact you soon'),
                                         behavior: SnackBarBehavior.floating,
                                       ));
+                                      //Putting the data to database
+                                      createVolunteer(
+                                          controller.text,
+                                          emailcontroller.text,
+                                          numbercontroller.text,
+                                          Help.selected!);
                                       setState(() {
                                         Help.value = 0;
                                       });
@@ -315,7 +325,7 @@ class _HelpState extends State<Help> {
                               height: 5,
                             ),
                             TextField(
-                              controller: controller,
+                              controller: restaurantcontroller,
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey[200],
@@ -446,7 +456,7 @@ class _HelpState extends State<Help> {
                                         horizontal: 50),
                                   ),
                                   onPressed: () {
-                                    if (controller.text.isNotEmpty &&
+                                    if (restaurantcontroller.text.isNotEmpty &&
                                         addresscontroller.text.isNotEmpty &&
                                         numbercontroller.text.isNotEmpty) {
                                       ScaffoldMessenger.of(context)
@@ -455,6 +465,10 @@ class _HelpState extends State<Help> {
                                             'Welcome  , We will contact you soon'),
                                         behavior: SnackBarBehavior.floating,
                                       ));
+                                      createRestaurant(
+                                          restaurantcontroller.text,
+                                          addresscontroller.text,
+                                          numbercontroller.text);
                                       setState(() {
                                         Help.value = 0;
                                       });
@@ -620,6 +634,25 @@ class _HelpState extends State<Help> {
         ),
       ),
     );
+  }
+
+  void createVolunteer(
+      String name, String email, String phoneno, String shift) {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore.collection('Volunteers').add({
+      'name': name,
+      'email': email,
+      'phoneno': phoneno,
+      'shift': shift
+    }).then((value) => null);
+  }
+
+  void createRestaurant(String name, String address, String phoneno) {
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    firestore
+        .collection('Restaurants')
+        .add({'name': name, 'address': address, 'phoneno': phoneno}).then(
+            (value) => null);
   }
 
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
