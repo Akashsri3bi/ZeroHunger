@@ -20,6 +20,7 @@ class Post extends StatefulWidget {
 class _PostState extends State<Post> {
   bool changed = false;
   int selectedIndex = 0;
+  bool showProgressBar = false;
   final username = FirebaseAuth.instance.currentUser!.displayName;
   TextEditingController controller = TextEditingController();
   @override
@@ -52,6 +53,9 @@ class _PostState extends State<Post> {
                     content: Text('Posting...'),
                     behavior: SnackBarBehavior.floating,
                   ));
+                  setState(() {
+                    showProgressBar = true;
+                  });
                   //Code for the image and text to be sent to firebase
                   String text = controller.text;
                   String? name = FirebaseAuth.instance.currentUser!.displayName;
@@ -91,6 +95,11 @@ class _PostState extends State<Post> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //Header layout ,
+                  showProgressBar
+                      ? const LinearProgressIndicator(
+                          color: Colors.green,
+                        )
+                      : Container(),
                   Container(
                       padding: const EdgeInsets.all(8.0),
                       height: 70,
