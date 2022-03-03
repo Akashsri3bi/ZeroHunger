@@ -119,7 +119,20 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                     ),
                   )*/
 
-              Wrap(children: [Image.network(widget.imageUrl)])
+              Wrap(children: [
+                  Image.network(
+                    widget.imageUrl,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+
+                      return const Center(
+                          child: CircularProgressIndicator(
+                        color: Colors.green,
+                      ));
+                      // You can use LinearProgressIndicator, CircularProgressIndicator, or a GIF instead
+                    },
+                  ),
+                ])
               : Container(),
 
           const SizedBox(
