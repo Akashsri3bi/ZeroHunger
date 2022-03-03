@@ -253,10 +253,14 @@ class InputField extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
                 controller: controller,
+                style: const TextStyle(
+                  fontFamily: "helvetica",
+                ),
                 decoration: InputDecoration(
                   hintText: hintTexti,
                   border: InputBorder.none,
                 ),
+                keyboardType: TextInputType.emailAddress,
               ),
             )
             //IntrinsicHeight
@@ -314,6 +318,9 @@ class _InputFieldPasswordState extends State<InputFieldPassword> {
             child: TextField(
               controller: widget.controller,
               obscureText: _visible,
+              style: const TextStyle(
+                fontFamily: "helvetica",
+              ),
               decoration: InputDecoration(
                   hintText: widget.hintTexti,
                   border: InputBorder.none,
@@ -341,7 +348,7 @@ class TopSginin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 15, left: 20),
+      margin: const EdgeInsets.only(top: 27, left: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

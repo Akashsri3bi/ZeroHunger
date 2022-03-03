@@ -64,9 +64,6 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          height: 2,
-                        ),
                         Text(
                           '4.5 stars',
                           style: Theme.of(context)

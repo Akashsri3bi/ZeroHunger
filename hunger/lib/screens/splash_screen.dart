@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => signedin ? const Home() : const Signin()));
+            builder: (context) => signedin ? const Signin() : const Home()));
   }
 
   @override
@@ -36,7 +36,7 @@ class _SplashState extends State<Splash> {
         const Padding(
           padding: EdgeInsets.only(top: 220, left: 50, right: 80),
           child: Text(
-            'Hungry',
+            'Starvelp',
             style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
           ),
         ),

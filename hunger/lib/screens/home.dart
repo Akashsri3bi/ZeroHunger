@@ -149,72 +149,10 @@ class Donate extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5.0),
                       color: Colors.black87,
                     ),
-                    child: Column(children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MapPage(),
-                              ));
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width - 40,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.location_on,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                  child: Text(
-                                'Select Location',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline3!
-                                    .copyWith(color: Colors.grey[600]),
-                              )),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Image.asset(
-                        'assets/waste2.png',
-                        height: 160,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      const Text(
-                        'SOMETHING LEFT ? ',
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Gill Sans',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: InkWell(
+                    child: Expanded(
+                      child: Column(
+                          children: [
+                            InkWell(
                               onTap: () {
                                 Navigator.push(
                                     context,
@@ -222,16 +160,80 @@ class Donate extends StatelessWidget {
                                       builder: (context) => const MapPage(),
                                     ));
                               },
-                              child: Text(
-                                'Deliver now',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline3!
-                                    .copyWith(color: Colors.blue),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width - 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.location_on,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Expanded(
+                                        child: Text(
+                                          'Select Location',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline3!
+                                              .copyWith(color: Colors.grey[600]),
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          /*Padding(
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Image.asset(
+                              'assets/waste2.png',
+                              height: 160,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                            const Text(
+                              'SOMETHING LEFT ? ',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Gill Sans',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => const MapPage(),
+                                          ));
+                                    },
+                                    child: Text(
+                                      'Deliver now',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline3!
+                                          .copyWith(color: Colors.blue),
+                                    ),
+                                  ),
+                                ),
+
+                                /*Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: InkWell(
                               onTap: () {
@@ -246,12 +248,13 @@ class Donate extends StatelessWidget {
                               ),
                             ),
                           ),*/
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      )
-                    ]),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            )
+                          ]),
+                    ),
                   ),
                   const SizedBox(
                     height: 200,
