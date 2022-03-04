@@ -346,7 +346,9 @@ class _PostState extends State<Post> {
   chooseFromGallery() async {
     XFile? _file = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
-      file = File(_file!.path);
+      if (_file != null) {
+        file = File(_file.path);
+      }
     });
   }
 
