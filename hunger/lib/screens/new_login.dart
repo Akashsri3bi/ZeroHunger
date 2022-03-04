@@ -46,7 +46,7 @@ class _SigninState extends State<Signin> {
                       height: 250,
                       width: MediaQuery.of(context).size.width * 0.8,
                       margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.09),
+                          left: MediaQuery.of(context).size.width * 0.14),
                       child: Image.asset("assets/logo.png"),
                     ),
                     InputField(
@@ -74,7 +74,9 @@ class _SigninState extends State<Signin> {
                               "Forgot Password?",
                               style: TextStyle(
                                   color: Colors.green.withOpacity(0.7),
-                                  fontWeight: FontWeight.w500),
+                                  fontWeight: FontWeight.w500,
+                                fontSize: 16
+                              ),
                             ),
                           ),
                         ),
@@ -88,7 +90,6 @@ class _SigninState extends State<Signin> {
                             loadingIsVisible = true;
                           });
                         }
-
                         await authService
                             .signIn(
                                 emailController.text, passwordController.text)
@@ -100,6 +101,38 @@ class _SigninState extends State<Signin> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const Home()));
+                        }).catchError((err) {
+                          setState(() {
+                            loadingIsVisible = false;
+                          });
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("Wrong login credentials..",
+                                  style: TextStyle(
+                                    fontFamily: "helvetica",
+                                    fontSize: 18
+                                  )),
+                                  content: Text(err.message,
+                                  style: const TextStyle(
+                                    fontFamily: "helvetica"
+                                  )),
+                                  actions: [
+                                    TextButton(
+                                      child: const Text("Ok",
+                                        style: TextStyle(
+                                          fontFamily: "helvetica"
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              }
+                          );
                         });
                       },
                       child: Container(
@@ -125,27 +158,40 @@ class _SigninState extends State<Signin> {
                       height: 2,
                     ),
                     loadingIsVisible
-                        ? const Center(
+                        ?
+                    Center(
+                      child: Column(
+                        children: const <Widget>[
+                          SizedBox(
+                            height: 15,
+                          ),
+                          SizedBox(
+                            height: 55,
+                            width: 55,
                             child: CircularProgressIndicator(
                               strokeWidth: 5,
                             ),
-                          )
+                          ),
+
+                        ],
+                      ),
+                    )
                         : Container(),
                     Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.149,
-                          top: MediaQuery.of(context).size.height * 0.08),
+                      alignment: Alignment.center,
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: Text.rich(
                         TextSpan(
                             text: "Don't already Have an account? ",
                             style: TextStyle(
+
                                 color: Colors.grey.withOpacity(0.8),
-                                fontSize: 16),
+                                fontSize: 19),
                             children: [
                               TextSpan(
                                   text: "Sign Up",
                                   style: const TextStyle(
-                                      color: Colors.green, fontSize: 16),
+                                      color: Colors.green, fontSize: 19),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
                                       Navigator.pushReplacement(
@@ -205,7 +251,7 @@ class _CheckerBoxState extends State<CheckerBox> {
             TextSpan(
               text: "Remember me",
               style:
-                  TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 16),
+                  TextStyle(color: Colors.grey.withOpacity(0.8), fontSize: 19),
             ),
           ),
         ],

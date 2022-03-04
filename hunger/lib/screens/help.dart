@@ -92,7 +92,7 @@ class _HelpState extends State<Help> {
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey[200],
-                                  hintText: "Selin Doga",
+                                  hintText: "Your name",
                                   contentPadding: const EdgeInsets.only(
                                       left: 20.0, bottom: 5.0, top: 12.5),
                                   focusedBorder: OutlineInputBorder(
@@ -329,7 +329,7 @@ class _HelpState extends State<Help> {
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey[200],
-                                  hintText: "Awantika restaurant",
+                                  hintText: "Restaurant name",
                                   contentPadding: const EdgeInsets.only(
                                       left: 20.0, bottom: 5.0, top: 12.5),
                                   focusedBorder: OutlineInputBorder(

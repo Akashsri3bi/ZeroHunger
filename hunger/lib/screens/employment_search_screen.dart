@@ -54,7 +54,11 @@ class _EmploymentSearchScreenState extends State<EmploymentSearchScreen> {
                         borderSide: const BorderSide(color: Colors.green)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.white))),
+                        borderSide: const BorderSide(color: Colors.white))
+                ),
+                style: const TextStyle(
+                  fontSize: 23,
+                ),
               ),
             ),
           ),

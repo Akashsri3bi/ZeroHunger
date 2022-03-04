@@ -136,12 +136,12 @@ class _SignUpState extends State<SignUp> {
                               text: "I already Have an account ",
                               style: TextStyle(
                                   color: Colors.grey.withOpacity(0.8),
-                                  fontSize: 16),
+                                  fontSize: 19),
                               children: [
                                 TextSpan(
                                     text: "Sign In",
                                     style: const TextStyle(
-                                        color: Colors.green, fontSize: 16),
+                                        color: Colors.green, fontSize: 19),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.pushReplacement(

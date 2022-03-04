@@ -49,7 +49,7 @@ class FarmersCard extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
                   Text(
                     farmer.mandi,
