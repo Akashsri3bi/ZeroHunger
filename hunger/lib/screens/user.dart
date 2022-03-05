@@ -154,10 +154,10 @@ class UserMain extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       await authService.signOut();
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Signin()));
+                          MaterialPageRoute(builder: (_) => const Signin()),
+                          (route) => false);
                     },
                     child: Text(
                       'Log out >',

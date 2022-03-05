@@ -26,12 +26,13 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => signedin ? const Signin() : const Home()));
+            builder: (context) => signedin ? const Home() : const Signin()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(children: [
         const Padding(
           padding: EdgeInsets.only(top: 220, left: 50, right: 80),
