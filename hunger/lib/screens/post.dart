@@ -363,7 +363,7 @@ class _PostState extends State<Post> {
 
   takePhoto() async {
     XFile? _file = await ImagePicker().pickImage(
-        source: ImageSource.camera, maxHeight: 67500, maxWidth: 96000);
+        source: ImageSource.camera, maxHeight: 6750, maxWidth: 9600);
     setState(() {
       file = File(_file!.path);
     });
