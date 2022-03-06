@@ -265,6 +265,7 @@ class InputField extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: "helvetica",
                 ),
+                keyboardType: TextInputType.emailAddress,
               ),
             )),
       ],

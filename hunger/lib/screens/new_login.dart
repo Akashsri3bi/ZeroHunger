@@ -163,11 +163,11 @@ class _SigninState extends State<Signin> {
                       child: Column(
                         children: const <Widget>[
                           SizedBox(
-                            height: 15,
+                            height: 3,
                           ),
                           SizedBox(
-                            height: 55,
-                            width: 55,
+                            height: 50,
+                            width: 50,
                             child: CircularProgressIndicator(
                               strokeWidth: 5,
                             ),
@@ -179,12 +179,11 @@ class _SigninState extends State<Signin> {
                         : Container(),
                     Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                       child: Text.rich(
                         TextSpan(
                             text: "Don't already Have an account? ",
                             style: TextStyle(
-
                                 color: Colors.grey.withOpacity(0.8),
                                 fontSize: 19),
                             children: [

@@ -543,7 +543,7 @@ class _HelpState extends State<Help> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 Center(
                   child: ElevatedButton(
@@ -570,7 +570,7 @@ class _HelpState extends State<Help> {
                   height: 5,
                 ),
                 Divider(
-                  height: 20,
+                  height: 5,
                   thickness: 10,
                   color: Colors.grey.shade300,
                 ),
@@ -605,7 +605,7 @@ class _HelpState extends State<Help> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 Center(
                   child: ElevatedButton(
