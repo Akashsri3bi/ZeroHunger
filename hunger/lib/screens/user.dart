@@ -181,7 +181,7 @@ class UserMain extends StatelessWidget {
             width: 100,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/person1.jpg'), fit: BoxFit.fill),
+                    image: AssetImage('assets/person0.jpg'), fit: BoxFit.fill),
                 shape: BoxShape.circle)),
         const SizedBox(
           width: 20,
