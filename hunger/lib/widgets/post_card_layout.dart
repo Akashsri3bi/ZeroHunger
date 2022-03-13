@@ -43,14 +43,14 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                 children: [
                   Container(
                       height: 55,
-                      width: 55,
+                      width: 40,
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/person1.jpg'),
+                              image: AssetImage('assets/person0.jpg'),
                               fit: BoxFit.fill),
                           shape: BoxShape.circle)),
                   const SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Expanded(
                     child: Column(

@@ -111,15 +111,15 @@ class _PostState extends State<Post> {
                               children: [
                                 Container(
                                     height: 55,
-                                    width: 56,
+                                    width: 40,
                                     decoration: const BoxDecoration(
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/person1.jpg'),
+                                                'assets/person0.jpg'),
                                             fit: BoxFit.fill),
                                         shape: BoxShape.circle)),
                                 const SizedBox(
-                                  width: 5,
+                                  width: 15,
                                 ),
                                 Expanded(
                                   child: Column(

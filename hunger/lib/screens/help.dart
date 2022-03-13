@@ -127,6 +127,7 @@ class _HelpState extends State<Help> {
                               ],
                             ),
                             TextField(
+                              keyboardType: TextInputType.emailAddress,
                               controller: emailcontroller,
                               decoration: InputDecoration(
                                   filled: true,
