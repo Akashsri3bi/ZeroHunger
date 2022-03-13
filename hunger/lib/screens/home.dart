@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hunger/config/theme.dart';
 import 'package:hunger/screens/collecting_restaurants_screen.dart';
 
 import 'package:hunger/screens/help.dart';
@@ -95,16 +96,16 @@ class Donate extends StatelessWidget {
           borderRadius: radius,
           collapsed: Container(
             decoration:
-                BoxDecoration(color: Colors.blueGrey, borderRadius: radius),
+                BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: radius),
             child: Center(
-              child: Column(children: const [
-                Icon(Icons.drag_handle_rounded),
-                SizedBox(
+              child: Column(children: [
+                const Icon(Icons.drag_handle_rounded),
+                const SizedBox(
                   height: 2,
                 ),
                 Text(
                   "Connecting Restaurants",
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                  style: TextStyle(color: Colors.blueGrey[900], fontSize: 24,fontWeight: FontWeight.bold),
                 ),
               ]),
             ),
@@ -173,7 +174,7 @@ class Donate extends StatelessWidget {
                                 ),
                                 Icon(
                                   Icons.location_on,
-                                  color: Theme.of(context).primaryColor,
+                                  color: Theme.of(context).backgroundColor,
                                 ),
                                 const SizedBox(
                                   width: 5,

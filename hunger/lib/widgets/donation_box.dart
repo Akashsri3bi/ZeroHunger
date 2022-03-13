@@ -128,7 +128,7 @@ class _CustomPricesState extends State<CustomPrices> {
         margin: const EdgeInsets.only(left: 5, right: 5),
         padding: const EdgeInsets.only(left: 10, top: 20),
         decoration: BoxDecoration(
-          color: widget.price.selected ? Colors.pink[300] : Colors.grey[300],
+          color: widget.price.selected ? Colors.pink[300] : Colors.grey[50],
           borderRadius: BorderRadius.circular(5),
         ),
         child: Text('\$${widget.price.value}',

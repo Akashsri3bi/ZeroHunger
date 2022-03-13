@@ -30,6 +30,7 @@ class _HelpState extends State<Help> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        centerTitle: true,
         title: Text(
           'Help',
           style: Theme.of(context)
@@ -572,7 +573,7 @@ class _HelpState extends State<Help> {
                 Divider(
                   height: 5,
                   thickness: 10,
-                  color: Colors.grey.shade300,
+                  color: Theme.of(context).primaryColor,
                 ),
                 const SizedBox(
                   height: 10,

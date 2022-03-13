@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData theme() {
   return ThemeData(
-    primaryColor: const Color(0xFFAAFF00),
+    primaryColor: const Color(0xFFE0EFBE),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     backgroundColor: const Color(0xFF356859),
     fontFamily: 'cursive',
@@ -48,7 +48,5 @@ ThemeData theme() {
         fontSize: 10,
       ),
     ),
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: const Color(0xFFAAFF00)),
   );
 }

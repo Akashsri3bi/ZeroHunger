@@ -23,6 +23,7 @@ class _InformPageState extends State<InformPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        centerTitle: true,
         title: Text(
           'Inform',
           style: Theme.of(context)
@@ -66,7 +67,7 @@ class _InformPageState extends State<InformPage> {
                 //selectImage(context);
               },
               child: const Icon(Icons.add),
-              backgroundColor: Colors.lightGreen[700],
+              backgroundColor: Theme.of(context).backgroundColor,
             ),
           ),
           Positioned(

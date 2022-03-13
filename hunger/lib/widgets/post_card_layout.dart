@@ -137,7 +137,7 @@ class _PostCardLayoutState extends State<PostCardLayout> {
           ),
           Divider(
             thickness: 8,
-            color: Colors.grey[300],
+            color: Theme.of(context).primaryColor,
           )
         ],
       ),
