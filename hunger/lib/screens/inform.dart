@@ -104,7 +104,7 @@ class _InformPageState extends State<InformPage> {
                         scrollAxis: Axis.horizontal,
                         style: const TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             color: Colors.white),
                         crossAxisAlignment: CrossAxisAlignment.start,
                         blankSpace: 20.0,

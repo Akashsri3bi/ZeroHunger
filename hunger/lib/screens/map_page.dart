@@ -137,7 +137,8 @@ class MapPageState extends State {
                 ),
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 6, 195, 81)),
                     ),
                     onPressed: () {
                       getChangedLocation(locationController.text);

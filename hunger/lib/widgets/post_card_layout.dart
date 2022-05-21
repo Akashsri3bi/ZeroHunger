@@ -23,10 +23,6 @@ class _PostCardLayoutState extends State<PostCardLayout> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      /*height: 300,
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-      */
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,13 +127,8 @@ class _PostCardLayoutState extends State<PostCardLayout> {
                   ),
                 ])
               : Container(),
-
-          const SizedBox(
-            height: 2,
-          ),
-          Divider(
+          const Divider(
             thickness: 8,
-            color: Theme.of(context).primaryColor,
           )
         ],
       ),

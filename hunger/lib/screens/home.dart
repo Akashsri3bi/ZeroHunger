@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Theme.of(context).backgroundColor,
           type: BottomNavigationBarType.fixed,
           onTap: _onItemTapped,
-          selectedItemColor: Colors.lightBlue,
+          selectedItemColor: Colors.lightGreen,
           currentIndex: _selectedIndex,
           items: const [
             BottomNavigationBarItem(
@@ -95,8 +95,8 @@ class Donate extends StatelessWidget {
           panel: const CollectingRestaurants(),
           borderRadius: radius,
           collapsed: Container(
-            decoration:
-                BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: radius),
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor, borderRadius: radius),
             child: Center(
               child: Column(children: [
                 const Icon(Icons.drag_handle_rounded),
@@ -105,7 +105,10 @@ class Donate extends StatelessWidget {
                 ),
                 Text(
                   "Connecting Restaurants",
-                  style: TextStyle(color: Colors.blueGrey[900], fontSize: 24,fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.blueGrey[900],
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
                 ),
               ]),
             ),
@@ -185,7 +188,7 @@ class Donate extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline2!
-                                      .copyWith(color: Colors.grey[600]),
+                                      .copyWith(color: Colors.grey[500]),
                                 )),
                               ],
                             ),
@@ -200,13 +203,18 @@ class Donate extends StatelessWidget {
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
+                        const SizedBox(
+                          height: 3,
+                        ),
                         const Text(
                           'SOMETHING LEFT ? ',
                           style: TextStyle(
                               fontSize: 24,
-                              fontFamily: 'Gill Sans',
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -225,8 +233,10 @@ class Donate extends StatelessWidget {
                                   'Deliver now',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline3!
-                                      .copyWith(color: Colors.blue),
+                                      .headline5!
+                                      .copyWith(
+                                          color: Color.fromARGB(
+                                              255, 33, 243, 159)),
                                 ),
                               ),
                             ),

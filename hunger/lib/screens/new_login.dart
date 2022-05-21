@@ -40,7 +40,7 @@ class _SigninState extends State<Signin> {
                         topLeft: Radius.circular(45),
                         topRight: Radius.circular(45))),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 250,
@@ -75,8 +75,7 @@ class _SigninState extends State<Signin> {
                               style: TextStyle(
                                   color: Colors.green.withOpacity(0.7),
                                   fontWeight: FontWeight.w500,
-                                fontSize: 16
-                              ),
+                                  fontSize: 16),
                             ),
                           ),
                         ),
@@ -90,6 +89,15 @@ class _SigninState extends State<Signin> {
                             loadingIsVisible = true;
                           });
                         }
+                        if (emailController.text == null ||
+                            passwordController.text == null) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Please fill'),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                        }
+
                         await authService
                             .signIn(
                                 emailController.text, passwordController.text)
@@ -110,20 +118,18 @@ class _SigninState extends State<Signin> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   title: const Text("Wrong login credentials..",
-                                  style: TextStyle(
-                                    fontFamily: "helvetica",
-                                    fontSize: 18
-                                  )),
+                                      style: TextStyle(
+                                          fontFamily: "helvetica",
+                                          fontSize: 18)),
                                   content: Text(err.message,
-                                  style: const TextStyle(
-                                    fontFamily: "helvetica"
-                                  )),
+                                      style: const TextStyle(
+                                          fontFamily: "helvetica")),
                                   actions: [
                                     TextButton(
-                                      child: const Text("Ok",
-                                        style: TextStyle(
-                                          fontFamily: "helvetica"
-                                        ),
+                                      child: const Text(
+                                        "Ok",
+                                        style:
+                                            TextStyle(fontFamily: "helvetica"),
                                       ),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -131,52 +137,37 @@ class _SigninState extends State<Signin> {
                                     )
                                   ],
                                 );
-                              }
-                          );
+                              });
                         });
                       },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
+                      child: AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        alignment: Alignment.center,
+                        width: loadingIsVisible
+                            ? 50
+                            : MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.07,
                         margin: const EdgeInsets.only(left: 20, right: 20),
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             color: Colors.green,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        child: const Center(
-                          child: Text(
-                            "Sign in",
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(
+                                loadingIsVisible ? 50 : 8)),
+                        child: loadingIsVisible
+                            ? const Icon(Icons.done)
+                            : const Center(
+                                child: Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                              ),
                       ),
                     ),
                     const SizedBox(
                       height: 2,
                     ),
-                    loadingIsVisible
-                        ?
-                    Center(
-                      child: Column(
-                        children: const <Widget>[
-                          SizedBox(
-                            height: 3,
-                          ),
-                          SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 5,
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    )
-                        : Container(),
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),

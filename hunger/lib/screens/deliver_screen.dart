@@ -82,6 +82,7 @@ class _DeliverScreenState extends State<DeliverScreen> {
                         child: Container(
                             height: 35,
                             margin: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: Colors.green, width: 1),
@@ -275,6 +276,6 @@ class _DeliverScreenState extends State<DeliverScreen> {
           value: restaurant.name,
           child: Text(
             restaurant.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: const TextStyle(fontSize: 16),
           ));
 }

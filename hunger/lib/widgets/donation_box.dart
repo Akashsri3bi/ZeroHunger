@@ -31,11 +31,8 @@ class _DonationBoxState extends State<DonationBox> {
               const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Choose Amount',
-                  style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
+                  ' Choose Amount',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
               const SizedBox(
@@ -57,7 +54,7 @@ class _DonationBoxState extends State<DonationBox> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black.withOpacity(0.9),
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
                   ),
                   onPressed: () {
                     int sum = 0;
@@ -126,9 +123,10 @@ class _CustomPricesState extends State<CustomPrices> {
         height: 50,
         width: 60,
         margin: const EdgeInsets.only(left: 5, right: 5),
-        padding: const EdgeInsets.only(left: 10, top: 20),
+        //padding: const EdgeInsets.only(left: 10, top: 20),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: widget.price.selected ? Colors.pink[300] : Colors.grey[50],
+          color: widget.price.selected ? Colors.greenAccent : Colors.grey[50],
           borderRadius: BorderRadius.circular(5),
         ),
         child: Text('\$${widget.price.value}',

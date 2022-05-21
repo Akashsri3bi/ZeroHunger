@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hunger/models/farmers.dart';
+import 'package:hunger/screens/chat_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FarmersCard extends StatelessWidget {
@@ -44,12 +45,10 @@ class FarmersCard extends StatelessWidget {
                   Text(
                     farmer.name,
                     style: const TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 3,
                   ),
                   Text(
                     farmer.mandi,
@@ -71,30 +70,63 @@ class FarmersCard extends StatelessWidget {
                               .bodyText1!
                               .copyWith(color: Colors.red),
                         ),
-                        Text(
-                          'delivery time ${farmer.time} mins',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText1!
-                              .copyWith(color: Colors.green),
-                        ),
-                      ])
+                      ]),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    'delivery time ${farmer.time} mins',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(color: Colors.green),
+                  ),
                 ],
               ),
             ),
             const SizedBox(width: 2),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
-                onPressed: () {
-                  launch(farmer.phoneno);
-                },
-                child: const Icon(
-                  Icons.call,
-                  color: Colors.black,
-                ))
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    primary: Colors.green.withOpacity(0.5),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                  ),
+                  onPressed: () {
+                    launch(farmer.phoneno);
+                  },
+                  child: const Icon(
+                    Icons.call,
+                    color: Colors.black,
+                  )),
+            ),
+            const SizedBox(width: 10),
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25)),
+                    primary: Colors.white.withOpacity(0.5),
+                    padding: const EdgeInsets.only(top: 15, bottom: 5),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChatScreen(
+                                  farmer: farmer,
+                                )));
+                  },
+                  child: const Icon(
+                    Icons.message,
+                    color: Colors.black,
+                  )),
+            ),
           ],
         ),
       ),

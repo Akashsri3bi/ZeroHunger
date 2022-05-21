@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hunger/config/theme.dart';
+import 'package:hunger/screens/home.dart';
+import 'package:hunger/screens/market_screen.dart';
 
 import 'package:hunger/screens/splash_screen.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hunger/screens/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Hunger',
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: const Splash(),
+      home: const MarketScreen(),
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme() {
   return ThemeData(
     primaryColor: const Color(0xFFE0EFBE),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     backgroundColor: const Color(0xFF356859),
-    fontFamily: 'cursive',
+    fontFamily: GoogleFonts.lato(fontStyle: FontStyle.italic).fontFamily,
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Colors.black,

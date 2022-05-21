@@ -533,14 +533,14 @@ class _HelpState extends State<Help> {
                   padding: EdgeInsets.only(right: 30, left: 30),
                   child: Center(
                     child: Text(
-                      'Integrate with us to collect food ',
+                      'Integrate with us to collect',
                       style: TextStyle(color: Colors.grey, fontSize: 24),
                     ),
                   ),
                 ),
                 const Center(
                   child: Text(
-                    'material',
+                    'food material',
                     style: TextStyle(color: Colors.grey, fontSize: 24),
                   ),
                 ),
@@ -571,13 +571,12 @@ class _HelpState extends State<Help> {
                 const SizedBox(
                   height: 5,
                 ),
-                Divider(
+                const Divider(
                   height: 5,
                   thickness: 10,
-                  color: Theme.of(context).primaryColor,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 Center(
                   child: Text(
@@ -607,7 +606,7 @@ class _HelpState extends State<Help> {
                   ),
                 ),
                 const SizedBox(
-                  height: 5,
+                  height: 15,
                 ),
                 Center(
                   child: ElevatedButton(

@@ -27,7 +27,7 @@ class FarmersDetailScreen extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.only(left: 5, top: 10),
                   child: Text(
-                    'Selling Farmers',
+                    ' ☀ Selling Farmers',
                     style: Theme.of(context)
                         .textTheme
                         .headline2!

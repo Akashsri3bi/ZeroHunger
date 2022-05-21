@@ -41,7 +41,7 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                   style: Theme.of(context)
                       .textTheme
                       .headline6!
-                      .copyWith(color: Colors.grey[800]),
+                      .copyWith(color: Colors.grey[500]),
                 )),
                 Icon(
                   Icons.search,
@@ -107,11 +107,12 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                     });
                                   },
                                   child: Container(
-                                    height: 20,
-                                    width: 50,
+                                    padding: const EdgeInsets.all(3.0),
+                                    height: 25,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       color: Filter.values[0].selected
-                                          ? Colors.blue
+                                          ? Color.fromARGB(255, 211, 241, 148)
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -136,11 +137,12 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                     });
                                   },
                                   child: Container(
-                                    height: 20,
-                                    width: 50,
+                                    padding: const EdgeInsets.all(3.0),
+                                    height: 25,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       color: Filter.values[1].selected
-                                          ? Colors.blue
+                                          ? Color.fromARGB(255, 211, 241, 148)
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -164,11 +166,12 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                     });
                                   },
                                   child: Container(
-                                    width: 50,
-                                    height: 20,
+                                    padding: const EdgeInsets.all(3.0),
+                                    height: 25,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       color: Filter.values[2].selected
-                                          ? Colors.blue
+                                          ? Color.fromARGB(255, 211, 241, 148)
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -209,6 +212,8 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Switch(
+                                  activeColor:
+                                      Color.fromARGB(255, 211, 241, 148),
                                   value: Filter.values[3].selected,
                                   onChanged: (key) {
                                     setState(() {
@@ -217,6 +222,8 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                   },
                                 ),
                                 Switch(
+                                  activeColor:
+                                      Color.fromARGB(255, 211, 241, 148),
                                   value: Filter.values[4].selected,
                                   onChanged: (key) {
                                     setState(() {
@@ -238,7 +245,7 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                   fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 5,
                             ),
                             Row(
                               children: [
@@ -250,11 +257,12 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                     });
                                   },
                                   child: Container(
-                                    width: 50,
-                                    height: 20,
+                                    padding: const EdgeInsets.all(3.0),
+                                    height: 25,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       color: Filter.values[5].selected
-                                          ? Colors.blue
+                                          ? Color.fromARGB(255, 211, 241, 148)
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -280,11 +288,12 @@ class _EmploymentSearchBoxState extends State<EmploymentSearchBox> {
                                     });
                                   },
                                   child: Container(
-                                    width: 50,
-                                    height: 20,
+                                    padding: const EdgeInsets.all(3.0),
+                                    height: 25,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       color: Filter.values[6].selected
-                                          ? Colors.blue
+                                          ? Color.fromARGB(255, 211, 241, 148)
                                           : Colors.grey,
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),

@@ -44,7 +44,6 @@ class _SignUpState extends State<SignUp> {
                         topRight: Radius.circular(45))),
                 child: Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         height: 200,
@@ -86,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                           }
                           authService
                               .register(nameController.text, "",
-                              emailController.text, passwordController.text)
+                                  emailController.text, passwordController.text)
                               .then((value) {
                             setState(() {
                               loadingIsVisible = false;
@@ -98,35 +97,34 @@ class _SignUpState extends State<SignUp> {
                                     builder: (context) => const Home()));
                           });
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
+                        child: AnimatedContainer(
+                          duration: const Duration(seconds: 1),
+                          width: loadingIsVisible
+                              ? 50
+                              : MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.07,
                           margin: const EdgeInsets.only(left: 20, right: 20),
-                          decoration: const BoxDecoration(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
                               color: Colors.green,
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                          child: const Center(
-                            child: Text(
-                              "Sign up",
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ),
+                              borderRadius: BorderRadius.circular(
+                                  loadingIsVisible ? 50 : 8)),
+                          child: loadingIsVisible
+                              ? const Icon(Icons.done)
+                              : const Center(
+                                  child: Text(
+                                    "Sign up",
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white),
+                                  ),
+                                ),
                         ),
                       ),
                       const SizedBox(
                         height: 2,
                       ),
-                      loadingIsVisible
-                          ? const Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 5,
-                        ),
-                      )
-                          : Container(),
                       Container(
                         margin: EdgeInsets.only(
                             top: 20,
@@ -148,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                const Signin()));
+                                                    const Signin()));
                                       }),
                               ]),
                         ),
@@ -330,9 +328,7 @@ class _InputFieldPasswordState extends State<InputFieldPassword> {
                           _visible = !_visible;
                         });
                       })),
-              style: const TextStyle(
-                fontFamily: "helvetica"
-              ),
+              style: const TextStyle(fontFamily: "helvetica"),
             ),
           ),
         ),

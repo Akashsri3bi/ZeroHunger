@@ -56,7 +56,7 @@ class RestaurantCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline4!
-                        .copyWith(color: Colors.blue),
+                        .copyWith(color: Color.fromARGB(255, 3, 101, 62)),
                   ),
                 ),
               ],
