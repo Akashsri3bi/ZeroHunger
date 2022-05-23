@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Hunger',
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: const MarketScreen(),
+      home: const Splash(),
     );
   }
 }
