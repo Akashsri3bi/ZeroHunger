@@ -213,11 +213,8 @@ class Donate extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
@@ -235,7 +232,7 @@ class Donate extends StatelessWidget {
                                       .textTheme
                                       .headline5!
                                       .copyWith(
-                                          color: Color.fromARGB(
+                                          color: const Color.fromARGB(
                                               255, 33, 243, 159)),
                                 ),
                               ),

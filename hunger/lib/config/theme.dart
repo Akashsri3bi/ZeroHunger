@@ -6,12 +6,12 @@ ThemeData theme() {
     primaryColor: const Color(0xFFE0EFBE),
     scaffoldBackgroundColor: const Color(0xFFF5F5F5),
     backgroundColor: const Color(0xFF356859),
-    fontFamily: GoogleFonts.lato(fontStyle: FontStyle.italic).fontFamily,
+    fontFamily: GoogleFonts.lato(fontStyle: FontStyle.normal).fontFamily,
     textTheme: const TextTheme(
       headline1: TextStyle(
         color: Colors.black,
         fontWeight: FontWeight.bold,
-        fontSize: 36,
+        fontSize: 32,
       ),
       headline2: TextStyle(
         color: Colors.black,

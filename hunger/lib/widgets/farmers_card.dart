@@ -23,7 +23,7 @@ class FarmersCard extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -47,18 +47,12 @@ class FarmersCard extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    height: 3,
-                  ),
                   Text(
                     farmer.mandi,
                     style: Theme.of(context)
                         .textTheme
                         .headline4!
                         .copyWith(color: Colors.grey),
-                  ),
-                  const SizedBox(
-                    height: 2,
                   ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
