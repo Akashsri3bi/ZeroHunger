@@ -54,3 +54,7 @@ flutter run
 
 </pre>
 
+## Screenshot of the improvements we made during the mentoring phase:
+<pre>
+<img src="https://user-images.githubusercontent.com/73192627/172268717-80caa708-3e8c-44aa-8a95-d7b12869e9b0.jpg" width="250"> <img src="https://user-images.githubusercontent.com/73192627/172268889-bf15cf30-fdc5-48f6-8b0e-356d4ef4f395.jpg" width="250"> <img src="https://user-images.githubusercontent.com/73192627/172268928-dde1e827-0f60-4634-a4ad-47c73cf77299.jpg" width="250"> <img src="https://user-images.githubusercontent.com/73192627/172268983-142bd28e-a0d4-4885-9741-71e4eaa1b341.jpg" width="250"> <img src="https://user-images.githubusercontent.com/73192627/172269241-a707a3aa-6401-481a-afbd-290a95c382f8.jpg" width="250">
+</pre>
