@@ -3,7 +3,9 @@
     <img src="https://github.com/Akashsri3bi/ZeroHunger/blob/main/hunger/assets/logo.png" alt="Logo" height="180">
   </a>
 
-  <p align="center">
+## <p align="center"> __STARVELP - SOLUTION CHALLENGE 2022 - TOP 10__ </p>
+
+<p align="center">
     Starvelp is an Application made by us to End hunger and Acheive Sustainable Development Goal 2 Zero Hunger
     <br />
     Starvelp Solution Challenge Demo Video: https://youtu.be/e--4n0-8czI 
